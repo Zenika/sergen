@@ -34,7 +34,7 @@ public class PojoGenerator {
         AnnotationsAttribute attrMethod = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
         AnnotationsAttribute attrAutowired = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
         // creation de l'annotation autowired pour l'attribut
-        Annotation annotAutowired = new Annotation("javax.ws.rs.Autowired", constPool);
+        Annotation annotAutowired = new Annotation("org.springframework.beans.factory.annotation.Autowired", constPool);
         attrAutowired.addAnnotation(annotAutowired);
         CtField ctFieldProductService;
 
@@ -50,10 +50,9 @@ public class PojoGenerator {
         //  }
 
         CtMethod sayHelloMethod;
-        sayHelloMethod = CtNewMethod.make("public com.zenika.sergen.product.Product sayHello(){\n" +
-                "         return new com.zenika.sergen.product.Product();\n" +
-
-                "     }", cc);
+        sayHelloMethod = CtNewMethod.make("public Long getCount() {\n" +
+                "        return productService.getCount();\n" +
+                "    }", cc);
         cc.addMethod(sayHelloMethod);
 
 
@@ -67,7 +66,7 @@ public class PojoGenerator {
         // Produces values
         MemberValue[] annotatonProducesValues = new StringMemberValue[1];
         //  annotatonProducesValues[0] = new StringMemberValue(MediaType.TEXT_PLAIN, constPool);
-        annotatonProducesValues[0] = new StringMemberValue(MediaType.APPLICATION_JSON, constPool);
+        annotatonProducesValues[0] = new StringMemberValue(MediaType.TEXT_PLAIN, constPool);
         //annotatonProducesValues[0] = new StringMemberValue(MediaType.TEXT_XML, constPool);
 
         Annotation annotProduces = new Annotation("javax.ws.rs.Produces", constPool);
@@ -92,7 +91,7 @@ public class PojoGenerator {
         attrClasse.addAnnotation(annotSlf4j);
         ccFile.addAttribute(attrClasse);
 
-
+        cc.writeFile();
         return cc.toClass();
     }
 
