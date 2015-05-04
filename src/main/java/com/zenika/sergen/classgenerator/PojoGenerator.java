@@ -91,7 +91,7 @@ public class PojoGenerator {
         attrClasse.addAnnotation(annotSlf4j);
         ccFile.addAttribute(attrClasse);
 
-        cc.writeFile();
+
         return cc.toClass();
     }
 
