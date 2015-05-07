@@ -1,5 +1,6 @@
 package com.zenika.sergen.classgenerator;
 
+import com.zenika.sergen.jsonParser.ResourceFonctions;
 import com.zenika.sergen.jsonParser.SG_ConfigClass;
 import javassist.*;
 import javassist.bytecode.AnnotationsAttribute;
@@ -20,67 +21,101 @@ import java.util.Map;
 public class ResourceGenerator {
 
     public static Class generate(SG_ConfigClass sg_configClass) throws NotFoundException, CannotCompileException, IOException {
-        final String autowiredAnnotation = "org.springframework.beans.factory.annotation.Autowired";
-        final String pathAnnotation = "javax.ws.rs.Path";
-        final String slf4jAnnotation = "javax.ws.rs.Slf4j";
-        final String producesAnnotation = "javax.ws.rs.Produces";
-        final String consumesAnnotation = "javax.ws.rs.Consumes";
-
         ClassPool pool = ClassPool.getDefault();
         CtClass cc = pool.makeClass(sg_configClass.getResourceName());
         ClassFile ccFile = cc.getClassFile();
         ConstPool constPool = ccFile.getConstPool();
 
-
-
-
-        AnnotationsAttribute attrAutowired = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
-        // creation de l'annotation autowired pour l'attribut
-        Annotation annotAutowired = new Annotation(autowiredAnnotation, constPool);
-        attrAutowired.addAnnotation(annotAutowired);
-
-        CtField ctFieldProductService;
+        //Create Fields with Autowired Annotation
 
         for (Map.Entry<String, String> entry : sg_configClass.getResourceAttributs().entrySet()) {
-
-            //pour recuperer le nom de l'attribut
-            String[] fieldPath = entry.getValue().split("\\.");
-            try {
-                pool.insertClassPath(new ClassClassPath(Class.forName(entry.getValue())));
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-
-
-            ctFieldProductService = new CtField(resolveCtClass(entry.getValue().toString()), fieldPath[fieldPath.length - 1].toLowerCase(), cc);
-
-            // ajouter l'annotation à l'attribut cré
-            ctFieldProductService.getFieldInfo().addAttribute(attrAutowired);
-
-            cc.addField(ctFieldProductService);
+            createField(entry.getValue().toString(), pool, constPool, cc);
         }
 
-        CtMethod sayHelloMethod;
-        String returnType = sg_configClass.getResourceFonctions().getReturnType();
-        String fonctionName = sg_configClass.getResourceFonctions().getFonctionName();
-        String fonctionBody = sg_configClass.getResourceFonctions().getFonctionBody();
-        CtClass[] fonctionparameters = null;
-        CtClass[] fonctionExceptions = null;
-        sayHelloMethod = CtNewMethod.make(resolveCtClass(returnType), fonctionName, fonctionparameters, fonctionExceptions, fonctionBody, cc);
-        cc.addMethod(sayHelloMethod);
+        // Create Methode with annoations
+
+        createMethod(sg_configClass.getResourceFonctions(), constPool, cc);
+
+        //Class annotation
+
+        addClassAnnotations(sg_configClass, constPool, ccFile);
+
+
+        return cc.toClass();
+    }
+
+
+    // To get CtClass
+    private static CtClass resolveCtClass(String name) throws NotFoundException {
+        ClassPool pool = ClassPool.getDefault();
+        return pool.get(name);
+    }
+
+
+    //Fonction for creating fields  with Autowired Annoation
+
+    private static void createField(String ClassName, ClassPool classPool, ConstPool constpool, CtClass declaringClass) throws NotFoundException {
+        CtField ctField = null;
+        final String autowiredAnnotation = "org.springframework.beans.factory.annotation.Autowired";
+        AnnotationsAttribute attrAutowired = new AnnotationsAttribute(constpool, AnnotationsAttribute.visibleTag);
+        // creation de l'annotation autowired pour l'attribut
+        Annotation annotAutowired = new Annotation(autowiredAnnotation, constpool);
+        attrAutowired.addAnnotation(annotAutowired);
+        String[] fieldPath = ClassName.split("\\.");
+        try {
+            classPool.insertClassPath(new ClassClassPath(Class.forName(ClassName)));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            ctField = new CtField(resolveCtClass(ClassName), fieldPath[fieldPath.length - 1].toLowerCase(), declaringClass);
+        } catch (CannotCompileException e) {
+            e.printStackTrace();
+        }
+        ctField.getFieldInfo().addAttribute(attrAutowired);
+
+        try {
+            declaringClass.addField(ctField);
+        } catch (CannotCompileException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+   //Creating Methodes with annotions
+
+    private static void createMethod(ResourceFonctions config, ConstPool constPool, CtClass declaringClass) throws NotFoundException {
+        final String pathAnnotation = "javax.ws.rs.Path";
+        final String producesAnnotation = "javax.ws.rs.Produces";
+        final String consumesAnnotation = "javax.ws.rs.Consumes";
+
+
+        CtMethod newMethod = null;
+        try {
+            newMethod = CtNewMethod.make(resolveCtClass(config.getReturnType()), config.getFonctionName(), null, null, config.getFonctionBody(), declaringClass);
+        } catch (CannotCompileException e) {
+            e.printStackTrace();
+        }
+        try {
+            declaringClass.addMethod(newMethod);
+        } catch (CannotCompileException e) {
+            e.printStackTrace();
+        }
 
         AnnotationsAttribute attrMethod = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
         Annotation annotPath = new Annotation(pathAnnotation, constPool);
-        annotPath.addMemberValue("value", new StringMemberValue(sg_configClass.getResourceFonctions().getFonctionPath(), constPool));
+        annotPath.addMemberValue("value", new StringMemberValue(config.getFonctionPath(), constPool));
         attrMethod.addAnnotation(annotPath);
 
-        Annotation annotGet = new Annotation(sg_configClass.getResourceFonctions().getTypeOfRequete(), constPool);
+        Annotation annotGet = new Annotation(config.getTypeOfRequete(), constPool);
         attrMethod.addAnnotation(annotGet);
 
         // Produces values
         MemberValue[] annotatonProducesValues = new StringMemberValue[1];
         //  annotatonProducesValues[0] = new StringMemberValue(MediaType.TEXT_PLAIN, constPool);
-        annotatonProducesValues[0] = new StringMemberValue(sg_configClass.getResourceFonctions().getFonctionProduces(), constPool);
+        annotatonProducesValues[0] = new StringMemberValue(config.getFonctionProduces(), constPool);
         //annotatonProducesValues[0] = new StringMemberValue(MediaType.TEXT_XML, constPool);
 
         Annotation annotProduces = new Annotation(producesAnnotation, constPool);
@@ -90,13 +125,21 @@ public class ResourceGenerator {
 
         attrMethod.addAnnotation(annotProduces);
 
-        sayHelloMethod.getMethodInfo().addAttribute(attrMethod);
+        newMethod.getMethodInfo().addAttribute(attrMethod);
 
-        //Class annotation
+    }
+
+
+    // To add Class Annotations
+    private static void addClassAnnotations(SG_ConfigClass classConfig, ConstPool constPool, ClassFile ccFile) throws NotFoundException {
+
+        final String pathAnnotation = "javax.ws.rs.Path";
+        final String slf4jAnnotation = "javax.ws.rs.Slf4j";
+
         AnnotationsAttribute attrClasse = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
         // Path Annotation for class
         Annotation annotClassPath = new Annotation(pathAnnotation, constPool);
-        annotClassPath.addMemberValue("value", new StringMemberValue(sg_configClass.getResourcePath(), constPool));
+        annotClassPath.addMemberValue("value", new StringMemberValue(classConfig.getResourcePath(), constPool));
         attrClasse.addAnnotation(annotClassPath);
         ccFile.addAttribute(attrClasse);
 
@@ -105,30 +148,6 @@ public class ResourceGenerator {
         attrClasse.addAnnotation(annotSlf4j);
         ccFile.addAttribute(attrClasse);
 
-        // cc.writeFile();
-        return cc.toClass();
     }
-
-    private static CtClass resolveCtClass(String name) throws NotFoundException {
-        ClassPool pool = ClassPool.getDefault();
-        return pool.get(name);
-    }
-
-   /* private static CtField createField(String ClassName, ClassPool pool, CtClass declaringClass) throws NotFoundException {
-        CtField ctField = null;
-
-        try {
-            pool.insertClassPath(new ClassClassPath(Class.forName(ClassName)));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            ctField = new CtField(resolveCtClass(ClassName), "productResource", declaringClass);
-        } catch (CannotCompileException e) {
-            e.printStackTrace();
-        }
-        return ctField;
-    }
-   */
 
 }
