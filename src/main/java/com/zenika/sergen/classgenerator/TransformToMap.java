@@ -24,11 +24,11 @@ public class TransformToMap {
             Map.Entry<String, JsonElement> entry = iterator.next();
             String key = entry.getKey();
             JsonElement value = entry.getValue();
-            if (!value.isJsonPrimitive()) {
-                map.put(key, value.getClass());
-            } else {
+          //  if (!value.isJsonPrimitive()) {
+           //     map.put(key, value);
+          //  } else {
                 map.put(key, value.getAsString());
-            }
+            //}
         }
         return map;
     }
