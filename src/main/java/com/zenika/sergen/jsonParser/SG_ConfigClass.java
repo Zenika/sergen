@@ -43,12 +43,12 @@ public class SG_ConfigClass {
         this.resourceFonctions = resourceFonctions;
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(getResourceName()+"\n");
-        stringBuilder.append(getResourcePath()+"\n");
-        stringBuilder.append(getResourceAttributs()+"\n");
-        stringBuilder.append(getResourceFonctions()+"\n");
+        stringBuilder.append(getResourceName() + "\n");
+        stringBuilder.append(getResourcePath() + "\n");
+        stringBuilder.append(getResourceAttributs() + "\n");
+        stringBuilder.append(getResourceFonctions() + "\n");
         return stringBuilder.toString();
     }
 

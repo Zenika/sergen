@@ -9,7 +9,7 @@ public class ResourceFonctions {
     private String fonctionBody;
     private String fonctionPath;
     private String fonctionProduces;
-    private String fonctionsConsumes;
+    private String fonctionConsumes;
     private String typeOfRequete;
 
     public String getFonctionName() {
@@ -44,12 +44,12 @@ public class ResourceFonctions {
         this.fonctionProduces = fonctionProduces;
     }
 
-    public String getFonctionsConsumes() {
-        return fonctionsConsumes;
+    public String getFonctionConsumes() {
+        return fonctionConsumes;
     }
 
     public void setFonctionsConsumes(String fonctionsConsumes) {
-        this.fonctionsConsumes = fonctionsConsumes;
+        this.fonctionConsumes = fonctionsConsumes;
     }
 
     public String getTypeOfRequete() {
@@ -71,8 +71,8 @@ public class ResourceFonctions {
 
     @Override
     public String toString() {
-        return getReturnType()+", "+ getFonctionName()+", "+ getFonctionBody()+", "+"," +
-                ""+getFonctionPath()+", "+getFonctionProduces()+","+getFonctionsConsumes()+"," +getTypeOfRequete()
+        return getReturnType() + ", " + getFonctionName() + ", " + getFonctionBody() + ", " + "," +
+                "" + getFonctionPath() + ", " + getFonctionProduces() + "," + getFonctionConsumes() + "," + getTypeOfRequete()
                 ;
     }
 }

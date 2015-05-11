@@ -32,7 +32,7 @@ public class ResourceGenerator {
             createField(entry.getValue().toString(), pool, constPool, cc);
         }
 
-        // Create Methode with annoations
+        // Create Methode with annotations
 
         createMethod(sg_configClass.getResourceFonctions(), constPool, cc);
 
@@ -52,7 +52,7 @@ public class ResourceGenerator {
     }
 
 
-    //Fonction for creating fields  with Autowired Annoation
+    //Fonction for creating fields  with Autowired Annotation
 
     private static void createField(String ClassName, ClassPool classPool, ConstPool constpool, CtClass declaringClass) throws NotFoundException {
         CtField ctField = null;
@@ -61,12 +61,15 @@ public class ResourceGenerator {
         // creation de l'annotation autowired pour l'attribut
         Annotation annotAutowired = new Annotation(autowiredAnnotation, constpool);
         attrAutowired.addAnnotation(annotAutowired);
+
         String[] fieldPath = ClassName.split("\\.");
+
         try {
             classPool.insertClassPath(new ClassClassPath(Class.forName(ClassName)));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
         try {
             ctField = new CtField(resolveCtClass(ClassName), fieldPath[fieldPath.length - 1].toLowerCase(), declaringClass);
         } catch (CannotCompileException e) {
@@ -82,9 +85,7 @@ public class ResourceGenerator {
     }
 
 
-
-
-   //Creating Methodes with annotions
+    //Creating Methodes with annotions
 
     private static void createMethod(ResourceFonctions config, ConstPool constPool, CtClass declaringClass) throws NotFoundException {
         final String pathAnnotation = "javax.ws.rs.Path";
@@ -112,18 +113,27 @@ public class ResourceGenerator {
         Annotation annotGet = new Annotation(config.getTypeOfRequete(), constPool);
         attrMethod.addAnnotation(annotGet);
 
-        // Produces values
-        MemberValue[] annotatonProducesValues = new StringMemberValue[1];
-        //  annotatonProducesValues[0] = new StringMemberValue(MediaType.TEXT_PLAIN, constPool);
-        annotatonProducesValues[0] = new StringMemberValue(config.getFonctionProduces(), constPool);
-        //annotatonProducesValues[0] = new StringMemberValue(MediaType.TEXT_XML, constPool);
+        // Produces values And Consumes Annotations
+        MemberValue[] mediaTypeProduces = new StringMemberValue[1];
+        MemberValue[] mediaTypeConsumes = new StringMemberValue[1];
+
+
+        mediaTypeProduces[0] = new StringMemberValue(config.getFonctionProduces(), constPool);
+        mediaTypeConsumes[0] = new StringMemberValue(config.getFonctionConsumes(), constPool);
+
 
         Annotation annotProduces = new Annotation(producesAnnotation, constPool);
-        ArrayMemberValue arrayMemberValue = new ArrayMemberValue(constPool);
-        arrayMemberValue.setValue(annotatonProducesValues);
-        annotProduces.addMemberValue("value", arrayMemberValue);
+        ArrayMemberValue arrayMemberValueProduces = new ArrayMemberValue(constPool);
+        arrayMemberValueProduces.setValue(mediaTypeProduces);
+        annotProduces.addMemberValue("value", arrayMemberValueProduces);
+
+        Annotation annotConsumes = new Annotation(consumesAnnotation, constPool);
+        ArrayMemberValue arrayMemberValueConsumes = new ArrayMemberValue(constPool);
+        arrayMemberValueConsumes.setValue(mediaTypeProduces);
+        annotConsumes.addMemberValue("value", arrayMemberValueConsumes);
 
         attrMethod.addAnnotation(annotProduces);
+        attrMethod.addAnnotation(annotConsumes);
 
         newMethod.getMethodInfo().addAttribute(attrMethod);
 
