@@ -5,7 +5,10 @@ import java.util.Map;
 /**
  * Created by Zenika on 06/05/2015.
  */
-public class SG_ConfigClass {
+public class SG_Configuration {
+
+
+    private Object _id;
     private String resourceName;
     private String resourcePath;
     private Map<String, String> resourceAttributs;
@@ -42,9 +45,17 @@ public class SG_ConfigClass {
     public void setResourceFonctions(ResourceFonctions resourceFonctions) {
         this.resourceFonctions = resourceFonctions;
     }
+    public Object get_id() {
+        return _id;
+    }
+
+    public void set_id(Object _id) {
+        this._id = _id;
+    }
 
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(get_id() + "\n");
         stringBuilder.append(getResourceName() + "\n");
         stringBuilder.append(getResourcePath() + "\n");
         stringBuilder.append(getResourceAttributs() + "\n");

@@ -126,11 +126,7 @@
             <version>3.19.0-GA</version>
         </dependency>
 
-        <!-- <dependency>
-             <groupId>com.sun.grizzly</groupId>
-             <artifactId>grizzly-http-servlet-deployer</artifactId>
-             <version>1.9.19-beta2</version>
-         </dependency> -->
+
         <!--Grizzly-->
         <dependency>
             <groupId>com.sun.jersey</groupId>
@@ -138,20 +134,13 @@
             <version>1.12</version>
         </dependency>
 
-        <!--  <dependency>
-               <groupId>com.sun.jersey</groupId>
-               <artifactId>jersey-server</artifactId>
-               <version>1.19</version>
-           </dependency>
-           -->
-        <!-- Jersey 2 for ContainerLifeCycle-->
+       <!--Mongodb -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>2.10.1</version>
+        </dependency>
 
-
-        <!-- <dependency>
-             <groupId>org.glassfish.jersey.containers</groupId>
-             <artifactId>jersey-container-grizzly2-http</artifactId>
-             <version>2.13</version>
-         </dependency> -->
 
 
     </dependencies>
