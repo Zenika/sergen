@@ -1,9 +1,9 @@
 package com.zenika.sergen;
 
-import com.zenika.sergen.classgenerator.ResourceGenerator;
+import com.zenika.sergen.resourcegenerator.SGResourceGenerator;
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
-import com.zenika.sergen.jsonParser.SG_Configuration;
-import com.zenika.sergen.jsonParser.SG_ConfigurationManager;
+import com.zenika.sergen.configuration.pojo.SGResource;
+import com.zenika.sergen.configuration_dao.dao.SGMongoManager;
 import com.zenika.sergen.security.CORSFilter;
 import javassist.CannotCompileException;
 import javassist.NotFoundException;
@@ -45,9 +45,9 @@ public class SergenApplication extends ResourceConfig {
 
         // Transform Json to class Config
 
-        SG_ConfigurationManager sg_configurationManager = new SG_ConfigurationManager();
+        SGMongoManager sg_configurationManager = new SGMongoManager();
 
-        SG_Configuration sg_config = null;
+        SGResource sg_config = null;
         try {
             sg_config = sg_configurationManager.Configuration();
         } catch (SGConfigurationNotFound sgConfigurationNotFound) {
@@ -56,7 +56,7 @@ public class SergenApplication extends ResourceConfig {
 
         //Generated class
 
-        Class<?> generatedClass = ResourceGenerator.generate(sg_config);
+        Class<?> generatedClass = SGResourceGenerator.generate(sg_config);
 
 
         //Registering the class generated
