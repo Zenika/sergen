@@ -3,38 +3,47 @@ package com.zenika.sergen.configuration.dao;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
+import com.mongodb.*;
+import com.mongodb.util.JSON;
 import com.zenika.sergen.configuration.pojo.SGResource;
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
 
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 /**
  * Created by Zenika on 13/05/2015.
  */
-public class SGConfigurationMongoDB implements SGConfigurationDAO {
+public class SGConfigurationMongoDB  implements SGConfigurationDAO  {
 
-    private SGMongoManager sgMongoManager;
+     public DBCollection collection;
 
     /**
      * @return
      * @throws UnknownHostException
      */
 
-    SGBDManager sgbdManager = new SGBDManager();
+    public DBCollection getCollection(String SGServer, int SGServerPort, String BDName, String CollectionName) throws UnknownHostException {
+        MongoClient mongoClient = new MongoClient(new ServerAddress(SGServer, SGServerPort));
+        DB database = mongoClient.getDB(BDName);
+        DBCollection collection = database.getCollection(CollectionName);
+        return collection;
+    }
+    public void initialisation(String SGServer, int SGServerPort, String BDName, String CollectionName) {
+        SGBDManager sgbdManager = new SGBDManager();
 
-    DBCollection collection = (DBCollection) sgbdManager.ConfigurationInitialisation("MongoDB");
-
+        try {
+             collection = getCollection( SGServer,  SGServerPort,  BDName,  CollectionName);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     /**
      *
      */
     public void save(SGResource configuration) {
-
-
-        sgMongoManager = new SGMongoManager();
 
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
@@ -44,7 +53,9 @@ public class SGConfigurationMongoDB implements SGConfigurationDAO {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        sgMongoManager.save(json);
+        //Transform Json to DBObject
+        DBObject resourceConfig = (DBObject) JSON.parse(json);
+        collection.insert(resourceConfig);
     }
 
     @Override
@@ -52,21 +63,45 @@ public class SGConfigurationMongoDB implements SGConfigurationDAO {
      *
      */
     public void delete(String name) {
-        sgMongoManager.remove(name);
+        BasicDBObject whereQuery = new BasicDBObject();
+
+        whereQuery.put("resourceIdentity", name);
+        collection.findAndRemove(whereQuery);
     }
 
     @Override
     /**
      *
      */
-    public SGResource load(String name) {
-        SGResource sgConfiguration = new SGResource();
-        try {
-            sgConfiguration = sgMongoManager.load(name);
-        } catch (SGConfigurationNotFound sgConfigurationNotFound) {
-            sgConfigurationNotFound.printStackTrace();
-        }
-        return sgConfiguration;
+    public SGResource load(String name) throws SGConfigurationNotFound {
+
+        BasicDBObject whereQuery = new BasicDBObject();
+
+
+        whereQuery.put("resourceName", name);
+
+
+
+        DBCursor result = null;
+
+        result = collection.find(whereQuery);
+
+        //create ObjectMapper instance
+        ObjectMapper objectMapper = new ObjectMapper();
+        //convert json string to object
+        SGResource sg_config = null;
+        while (result.hasNext())
+            try {
+
+
+                sg_config = objectMapper.readValue(result.next().toString(), SGResource.class);
+                //readValue(jsonData, SG_Configuration.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        return sg_config;
+
+
     }
 
     @Override

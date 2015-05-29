@@ -13,12 +13,7 @@ import java.net.UnknownHostException;
 public class SGBDManager {
 
 
-    public DBCollection getCollection(String SGServer, int SGServerPort, String BDName, String CollectionName) throws UnknownHostException {
-        MongoClient mongoClient = new MongoClient(new ServerAddress(SGServer, SGServerPort));
-        DB database = mongoClient.getDB(BDName);
-        DBCollection collection = database.getCollection(CollectionName);
-        return collection;
-    }
+
 
     public Object ConfigurationInitialisation(String SGBDName) {
 
@@ -30,11 +25,11 @@ public class SGBDManager {
         } else if (SGBDName.equals("Oracle")) {
             //TODO
         } else if (SGBDName.equals("MongoDB") || SGBDName.equals("Default")) {
-            try {
-                return getCollection("localhost", 27017, "ConfigurationDB", "resources");
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-            }
+
+               return new SGConfigurationMongoDB();
+               // return getCollection("localhost", 27017, "ConfigurationDB", "resources");
+
         }
+        return null;
     }
 }
