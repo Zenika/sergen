@@ -81,19 +81,18 @@ public class SGRestAPIJersey implements SGRestAPI {
     }
 
     /**
-     * @param mediaType : the consumed mediatype
      * @return
      */
-    public String getConsumeDeclaration(String mediaType) {
-        return "@Consumes(" + mediaType + ")";
+    public String getConsumeDeclaration() {
+        return "javax.ws.rs.Consumes";
     }
 
+
     /**
-     * @param mediaType : produced mediatype
      * @return
      */
-    public String getProduceDeclaration(String mediaType) {
-        return "@Produces(" + mediaType + ")";
+    public String getProduceDeclaration() {
+        return "javax.ws.rs.Produces";
     }
 
     /**
@@ -105,11 +104,12 @@ public class SGRestAPIJersey implements SGRestAPI {
     }
 
     /**
-     * @param path
-     * @return the method Path
+     * @return : Path classpath
      */
-    public String getPathDeclaration(String path) {
-        return "@Path(" + path + ")";
+
+
+    public String getPathDeclaration() {
+        return "javax.ws.rs.Path";
     }
 
     /**

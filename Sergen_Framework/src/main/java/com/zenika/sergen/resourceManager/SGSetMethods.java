@@ -26,9 +26,7 @@ public class SGSetMethods {
      */
     public static void createMethod(SGMethod method, ConstPool constPool, CtClass declaringClass, String objectName) throws NotFoundException {
 
-        final String pathAnnotation = "javax.ws.rs.Path";
-        final String producesAnnotation = "javax.ws.rs.Produces";
-        final String consumesAnnotation = "javax.ws.rs.Consumes";
+
 
 
         ArrayList<SGWorkflows> methodWorkflows = method.getWorkflows();
@@ -94,7 +92,7 @@ public class SGSetMethods {
         }
 
         AnnotationsAttribute attrMethod = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
-        Annotation annotPath = new Annotation(pathAnnotation, constPool);
+        Annotation annotPath = new Annotation(sgRestAPIJersey.getPathDeclaration(), constPool);
         annotPath.addMemberValue("value", new StringMemberValue(method.getPath() + paramsInPath, constPool));
         attrMethod.addAnnotation(annotPath);
 
@@ -111,12 +109,12 @@ public class SGSetMethods {
         mediaTypeConsumes[0] = new StringMemberValue(method.getConsumes(), constPool);
 
 
-        Annotation annotProduces = new Annotation(producesAnnotation, constPool);
+        Annotation annotProduces = new Annotation(sgRestAPIJersey.getProduceDeclaration(), constPool);
         ArrayMemberValue arrayMemberValueProduces = new ArrayMemberValue(constPool);
         arrayMemberValueProduces.setValue(mediaTypeProduces);
         annotProduces.addMemberValue("value", arrayMemberValueProduces);
 
-        Annotation annotConsumes = new Annotation(consumesAnnotation, constPool);
+        Annotation annotConsumes = new Annotation(sgRestAPIJersey.getConsumeDeclaration(), constPool);
         ArrayMemberValue arrayMemberValueConsumes = new ArrayMemberValue(constPool);
         arrayMemberValueConsumes.setValue(mediaTypeProduces);
         annotConsumes.addMemberValue("value", arrayMemberValueConsumes);
@@ -128,6 +126,7 @@ public class SGSetMethods {
 
     }
 
+    //function for testing if the workflows has returnType or Not
     public static boolean workflowsHasReturnType() {
         return true;
     }
