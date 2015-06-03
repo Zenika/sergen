@@ -2,9 +2,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>zenika</groupId>
-    <artifactId>sergen</artifactId>
-    <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>com.zenika.sergen</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1</version>
+    <modules>
+        <module>Sergen_Framework</module>
+        <module>ConfigurationDAO</module>
+        <module>Samples</module>
+    </modules>
     <name>Zenika Sergen POC</name>
 
     <url>http://maven.apache.org</url>
@@ -18,25 +23,25 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- LOGGER -->
+        <!-- LOGGER
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
-        </dependency>
+        </dependency> -->
         <!--dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
-        </dependency-->
+        </dependency>-->
 
-        <!-- LOMBOK -->
+        <!-- LOMBOK
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
-        </dependency>
+        </dependency> -->
 
 
         <!-- JERSEY -->
@@ -53,11 +58,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.3.1</version>
-        </dependency>
 
         <!-- Test -->
 
@@ -134,20 +134,14 @@
             <version>1.12</version>
         </dependency>
 
-       <!--Mongodb -->
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>2.10.1</version>
-        </dependency>
-
+        <!--Mongodb -->
 
 
     </dependencies>
 
 
     <build>
-        <finalName>sergen</finalName>
+        <finalName>com.zenika.sergen</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -226,9 +220,6 @@
         <jetty.version>9.0.2.v20130417</jetty.version>
         <jettyplugin.version>9.2.8-SNAPSHOT</jettyplugin.version>
 
-        <slf4j.version>1.7.10</slf4j.version>
-        <logback.version>1.1.2</logback.version>
-        <lombok.version>1.16.2</lombok.version>
 
         <junit.version>4.12</junit.version>
 
@@ -236,4 +227,5 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
 </project>
