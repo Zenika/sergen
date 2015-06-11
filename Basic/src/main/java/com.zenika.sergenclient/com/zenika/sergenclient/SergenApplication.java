@@ -1,6 +1,5 @@
 package com.zenika.sergenclient;
 
-
 import com.zenika.sergen.pojo.SGConfiguration;
 import com.zenika.sergen.resourceManager.SGResourceGenerator;
 import com.zenika.sergen.resourceManager.SGRestAPIJersey;
@@ -32,7 +31,7 @@ public class SergenApplication extends ResourceConfig {
         log.info("POC started!");
 
         // Turn on Jersey classpath scanning for providers and resources in the given package directories
-        packages("com.zenika.com.zenika.sergen");
+        packages("com.zenika.sergen");
 
         // Jackson JSON marshalling
         register(JacksonFeature.class);

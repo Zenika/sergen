@@ -27,14 +27,12 @@ public class SGSetMethods {
     public static void createMethod(SGMethod method, ConstPool constPool, CtClass declaringClass, String objectName) throws NotFoundException {
 
 
-
-
         ArrayList<SGWorkflows> methodWorkflows = method.getWorkflows();
 
 
         ArrayList<String> workFlowParameters;
 
-        // Using the workFlows
+        // Making the workflow body
         String methodBody = null;
         for (SGWorkflows workflow : methodWorkflows) {
             workFlowParameters = workflow.getParameters();
@@ -44,7 +42,6 @@ public class SGSetMethods {
             if (workflowsHasReturnType()) {
                 workflowToString.append("return");
                 workflowToString.append("   ");
-
             }
             workflowToString.append(objectName);
             workflowToString.append(".");

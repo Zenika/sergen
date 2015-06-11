@@ -20,8 +20,6 @@ public class SGConfigurationDAOMongoDB implements SGConfigurationDAO {
     private DBCollection collection;
 
     public void init(String SGServer, int SGServerPort, String BDName, String CollectionName) {
-        SGBDManager sgbdManager = new SGBDManager();
-
         try {
             collection = getCollection(SGServer, SGServerPort, BDName, CollectionName);
         } catch (UnknownHostException e) {
@@ -83,7 +81,7 @@ public class SGConfigurationDAOMongoDB implements SGConfigurationDAO {
         whereQuery.put("resourceName", name);
 
 
-        DBCursor result = null;
+        DBCursor result;
 
         result = collection.find(whereQuery);
 

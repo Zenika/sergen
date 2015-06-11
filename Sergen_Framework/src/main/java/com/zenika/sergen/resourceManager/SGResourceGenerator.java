@@ -51,9 +51,9 @@ public class SGResourceGenerator {
             for (SGWorkflows w : allMethodWorkFlows) {
 
                 // to create autowired Fields
-                SGSetClassFields.createField(w.getClassPath().toString(), pool, constPool, cc);
+                SGSetClassFields.createField(getWorkflowPackage(), pool, constPool, cc);
 
-                fieldPath = w.getClassPath().toString().split("\\.");
+                fieldPath = getWorkflowPackage().split("\\.");
 
                 objectWorkFlowName = fieldPath[fieldPath.length - 1].toLowerCase();
             }
@@ -71,13 +71,17 @@ public class SGResourceGenerator {
 
     }
 
+    /**
+     * @param configurations : all resources 'configuration
+     * @return : all generated resources
+     */
     public static ArrayList<Class<?>> generateAllResources(ArrayList<SGConfiguration> configurations) {
-        ArrayList<Class<?>> allGeneratedResource = new ArrayList<>();
+        ArrayList<Class<?>> allGeneratedResources = new ArrayList<>();
         Class<?> generatedClass;
         for (SGConfiguration configuration : configurations) {
             try {
                 generatedClass = generate(configuration);
-                allGeneratedResource.add(generatedClass);
+                allGeneratedResources.add(generatedClass);
             } catch (NotFoundException e) {
                 e.printStackTrace();
             } catch (CannotCompileException e) {
@@ -86,13 +90,24 @@ public class SGResourceGenerator {
                 e.printStackTrace();
             }
         }
-        return allGeneratedResource;
+        return allGeneratedResources;
     }
 
     // To get CtClass
+
+    /**
+     * @param name : name of the  the we need the CtClass
+     * @return
+     * @throws NotFoundException
+     */
     public CtClass resolveCtClass(String name) throws NotFoundException {
         ClassPool pool = ClassPool.getDefault();
         return pool.get(name);
+    }
+
+    // function to define, this must return the workflow package getting from appropriate annotation.
+    public static String getWorkflowPackage() {
+        return null;
     }
 
 }

@@ -16,7 +16,7 @@ public interface SGConfigurationDAO {
 
     public SGConfiguration load(String name) throws SGConfigurationNotFound;
 
-    public ArrayList<SGConfiguration> loadAll();
+    public ArrayList<com.zenika.sergen.pojo.SGConfiguration> loadAll();
 
     public ArrayList<String> loadAllNames();
 }
