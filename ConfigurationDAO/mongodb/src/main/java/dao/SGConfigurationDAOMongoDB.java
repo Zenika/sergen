@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.mongodb.*;
 import com.mongodb.util.JSON;
+import com.zenika.sergen.configuration.SGConfigurationDAO;
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
 import com.zenika.sergen.pojo.SGConfiguration;
 

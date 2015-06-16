@@ -1,4 +1,4 @@
-package pojo;
+package com.zenika.sergen.pojo;
 
 import lombok.Data;
 

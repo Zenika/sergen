@@ -1,4 +1,4 @@
-package dao;
+package com.zenika.sergen.configuration;
 
 /**
  * Created by Zenika on 27/05/2015.

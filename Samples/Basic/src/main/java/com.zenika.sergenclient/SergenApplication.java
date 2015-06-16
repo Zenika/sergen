@@ -1,14 +1,15 @@
 package com.zenika.sergenclient;
 
+import com.zenika.sergen.configuration.SGBDManager;
 import com.zenika.sergen.pojo.SGConfiguration;
 import com.zenika.sergen.resourceManager.SGResourceGenerator;
 import com.zenika.sergen.resourceManager.SGRestAPIJersey;
 import com.zenika.sergen.resourceManager.SGRestAPIManager;
 import com.zenika.sergenclient.security.CORSFilter;
-import dao.SGBDManager;
 import dao.SGConfigurationDAOMongoDB;
 import javassist.CannotCompileException;
 import javassist.NotFoundException;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
  */
 @ApplicationPath("resources")
 @Slf4j
+@Data
 public class SergenApplication extends ResourceConfig {
 
 

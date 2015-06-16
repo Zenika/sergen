@@ -5,33 +5,16 @@
     <parent>
         <artifactId>com.zenika.sergen</artifactId>
         <groupId>zenika</groupId>
-        <version>0.1</version>
+        <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>configurationDAO</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+    <!--<version>${project.version}</version>-->
+    <modules>
 
-    <dependencies>
-        <!--Gson-->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
+        <module>mongodb</module>
 
-        </dependency>
-       <!-- Jackson -->
-        <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-json-jackson</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-        </dependency>
-
-
-    </dependencies>
-
-
+    </modules>
 </project>

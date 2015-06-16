@@ -1,4 +1,4 @@
-package dao;
+package com.zenika.sergen.configuration;
 
 
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;

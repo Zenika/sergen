@@ -4,12 +4,11 @@
     <groupId>zenika</groupId>
     <artifactId>com.zenika.sergen</artifactId>
     <packaging>pom</packaging>
-    <version>0.1</version>
+    <version>1.0</version>
     <modules>
         <module>Sergen_Framework</module>
-        <module>ConfigurationDAO</module>
+        <module>configurationDAO</module>
         <module>Samples</module>
-        <module>Sergen_Component</module>
     </modules>
     <name>Zenika Sergen POC</name>
 
@@ -247,6 +246,8 @@
         <javadoc.version>2.10.1</javadoc.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- <project.version>1.0-SNAPSHOT</project.version> -->
     </properties>
 
 </project>

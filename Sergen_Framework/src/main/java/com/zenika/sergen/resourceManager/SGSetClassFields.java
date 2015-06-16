@@ -10,7 +10,7 @@ import javassist.bytecode.annotation.Annotation;
  */
 public class SGSetClassFields {
     /**
-     * @param ClassName      : Getting from some annotation from the component
+     * @param ClassName      : Getting from some annotation from the com.zenika.sergen.components.component
      * @param classPool
      * @param constpool
      * @param declaringClass

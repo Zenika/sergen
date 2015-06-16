@@ -29,7 +29,6 @@ public class SGResourceGenerator {
      */
     public static Class generate(SGConfiguration resource) throws NotFoundException, CannotCompileException, IOException {
         ClassPool pool = ClassPool.getDefault();
-
         CtClass cc = pool.makeClass(resource.getName());
         ClassFile ccFile = cc.getClassFile();
         ConstPool constPool = ccFile.getConstPool();
@@ -95,6 +94,11 @@ public class SGResourceGenerator {
 
     // To get CtClass
 
+    // function to define, this must return the workflow package getting from appropriate annotation.
+    public static String getWorkflowPackage() {
+        return null;
+    }
+
     /**
      * @param name : name of the  the we need the CtClass
      * @return
@@ -103,11 +107,6 @@ public class SGResourceGenerator {
     public CtClass resolveCtClass(String name) throws NotFoundException {
         ClassPool pool = ClassPool.getDefault();
         return pool.get(name);
-    }
-
-    // function to define, this must return the workflow package getting from appropriate annotation.
-    public static String getWorkflowPackage() {
-        return null;
     }
 
 }

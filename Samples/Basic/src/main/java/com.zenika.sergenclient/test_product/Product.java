@@ -1,4 +1,4 @@
-package com.zenika.sergen.test_product;
+package com.zenika.sergenclient.test_product;
 
 import lombok.Data;
 

@@ -5,13 +5,13 @@
     <parent>
         <artifactId>samples</artifactId>
         <groupId>zenika</groupId>
-        <version>0.1</version>
-        <relativePath>../Samples/pom.xml</relativePath>
+        <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>basic</artifactId>
     <packaging>jar</packaging>
+    <!-- <version>${project.version}</version> -->
 
     <dependencies>
         <!-- TEST -->
@@ -21,6 +21,19 @@
             <scope>test</scope>
         </dependency>
 
+        <!--ConfigurationDAO-->
+        <dependency>
+            <groupId>zenika</groupId>
+            <artifactId>configurationDAO</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <!--sergen_framework-->
+        <dependency>
+            <groupId>zenika</groupId>
+            <artifactId>sergen_framework</artifactId>
+            <version>1.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -38,7 +51,6 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
-
 
 
         <!-- JERSEY -->
@@ -100,7 +112,6 @@
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
         </dependency>
-
 
 
     </dependencies>

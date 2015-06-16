@@ -21,7 +21,7 @@ public class SGSetMethods {
      * @param method
      * @param constPool
      * @param declaringClass
-     * @param objectName     getting from some annotation from the called component
+     * @param objectName     getting from some annotation from the called com.zenika.sergen.components.component
      * @throws javassist.NotFoundException
      */
     public static void createMethod(SGMethod method, ConstPool constPool, CtClass declaringClass, String objectName) throws NotFoundException {

@@ -5,14 +5,14 @@
     <parent>
         <artifactId>com.zenika.sergen</artifactId>
         <groupId>zenika</groupId>
-        <version>0.1</version>
+        <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>samples</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>../Basic</module>
+        <module>basic</module>
 
     </modules>
 </project>
