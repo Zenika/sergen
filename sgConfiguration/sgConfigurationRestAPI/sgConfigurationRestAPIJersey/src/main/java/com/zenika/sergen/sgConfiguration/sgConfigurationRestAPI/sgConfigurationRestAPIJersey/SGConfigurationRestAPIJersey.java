@@ -1,9 +1,11 @@
-package com.zenika.sergen.resourceManager;
+package com.zenika.sergen.sgConfiguration.sgConfigurationRestAPI.sgConfigurationRestAPIJersey;
 
+import com.zenika.sergen.configuration.SGConfigurationRestAPI;
 import com.zenika.sergen.pojo.SGMethodPathParams;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.NotFoundException;
+import lombok.Data;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import java.util.ArrayList;
@@ -11,10 +13,11 @@ import java.util.ArrayList;
 /**
  * Created by Zenika on 29/05/2015.
  */
-public class SGRestAPIJersey implements SGRestAPI {
+@Data
+public class SGConfigurationRestAPIJersey implements SGConfigurationRestAPI {
 
-    private ArrayList<Class<?>> registeredResources = null;
-    private ResourceConfig resourceConfig = null;
+    private ArrayList<Class<?>> registeredResources = new ArrayList<>();
+    private ResourceConfig resourceConfig = new ResourceConfig();
     private ClassPool pool = ClassPool.getDefault();
 
     public void init(ResourceConfig resourceConfig) {
@@ -25,8 +28,9 @@ public class SGRestAPIJersey implements SGRestAPI {
      * @param generatedResource : generated Resource at runtime
      */
     public void register(Class<?> generatedResource) {
-        this.resourceConfig.register(generatedResource);
+
         if (!registeredResources.contains(generatedResource)) {
+            this.resourceConfig.register(generatedResource);
             this.registeredResources.add(generatedResource);
         }
 

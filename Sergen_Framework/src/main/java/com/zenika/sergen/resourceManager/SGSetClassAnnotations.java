@@ -1,6 +1,6 @@
 package com.zenika.sergen.resourceManager;
 
-import com.zenika.sergen.pojo.SGConfiguration;
+import com.zenika.sergen.pojo.SGResourceConfiguration;
 import javassist.NotFoundException;
 import javassist.bytecode.AnnotationsAttribute;
 import javassist.bytecode.ClassFile;
@@ -24,7 +24,7 @@ public class SGSetClassAnnotations {
      * @param ccFile
      * @throws javassist.NotFoundException
      */
-    public static void addClassAnnotations(SGConfiguration classConfig, ConstPool constPool, ClassFile ccFile) throws NotFoundException {
+    public static void addClassAnnotations(SGResourceConfiguration classConfig, ConstPool constPool, ClassFile ccFile) throws NotFoundException {
 
         final String pathAnnotation = "javax.ws.rs.Path";
         final String slf4jAnnotation = "javax.ws.rs.Slf4j";

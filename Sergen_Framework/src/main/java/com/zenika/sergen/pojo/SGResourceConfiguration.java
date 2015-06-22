@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by Zenika on 06/05/2015.
  */
 @Data
-public class SGConfiguration {
+public class SGResourceConfiguration {
 
     private Object _id;
     private String name;

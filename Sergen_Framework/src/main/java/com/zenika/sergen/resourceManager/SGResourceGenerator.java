@@ -1,6 +1,6 @@
 package com.zenika.sergen.resourceManager;
 
-import com.zenika.sergen.pojo.SGConfiguration;
+import com.zenika.sergen.pojo.SGResourceConfiguration;
 import com.zenika.sergen.pojo.SGMethod;
 import com.zenika.sergen.pojo.SGWorkflows;
 import javassist.CannotCompileException;
@@ -27,7 +27,7 @@ public class SGResourceGenerator {
      * @throws javassist.CannotCompileException : if Javassist cannot compile at runtime the class
      * @throws java.io.IOException
      */
-    public static Class generate(SGConfiguration resource) throws NotFoundException, CannotCompileException, IOException {
+    public static Class generate(SGResourceConfiguration resource) throws NotFoundException, CannotCompileException, IOException {
         ClassPool pool = ClassPool.getDefault();
         CtClass cc = pool.makeClass(resource.getName());
         ClassFile ccFile = cc.getClassFile();
@@ -71,13 +71,13 @@ public class SGResourceGenerator {
     }
 
     /**
-     * @param configurations : all resources 'configuration
-     * @return : all generated resources
+     * @param configurations : all com.zenika.sergen.resources 'configuration
+     * @return : all generated com.zenika.sergen.resources
      */
-    public static ArrayList<Class<?>> generateAllResources(ArrayList<SGConfiguration> configurations) {
+    public static ArrayList<Class<?>> generateAllResources(ArrayList<SGResourceConfiguration> configurations) {
         ArrayList<Class<?>> allGeneratedResources = new ArrayList<>();
         Class<?> generatedClass;
-        for (SGConfiguration configuration : configurations) {
+        for (SGResourceConfiguration configuration : configurations) {
             try {
                 generatedClass = generate(configuration);
                 allGeneratedResources.add(generatedClass);

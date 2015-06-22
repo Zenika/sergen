@@ -1,4 +1,4 @@
-package dao;
+package com.zenika.sergen.sgConfiguration.sgConfigurationDAO.sgConfigurationDAOMongoDB;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,7 +7,7 @@ import com.mongodb.*;
 import com.mongodb.util.JSON;
 import com.zenika.sergen.configuration.SGConfigurationDAO;
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
-import com.zenika.sergen.pojo.SGConfiguration;
+import com.zenika.sergen.pojo.SGResourceConfiguration;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -36,15 +36,14 @@ public class SGConfigurationDAOMongoDB implements SGConfigurationDAO {
     public DBCollection getCollection(String SGServer, int SGServerPort, String BDName, String CollectionName) throws UnknownHostException {
         MongoClient mongoClient = new MongoClient(new ServerAddress(SGServer, SGServerPort));
         DB database = mongoClient.getDB(BDName);
-        DBCollection collection = database.getCollection(CollectionName);
-        return collection;
+        return database.getCollection(CollectionName);
     }
 
     @Override
     /**
      *
      */
-    public void save(SGConfiguration configuration) {
+    public void save(SGResourceConfiguration configuration) {
 
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
@@ -74,7 +73,7 @@ public class SGConfigurationDAOMongoDB implements SGConfigurationDAO {
     /**
      *
      */
-    public SGConfiguration load(String name) throws SGConfigurationNotFound {
+    public SGResourceConfiguration load(String name) throws SGConfigurationNotFound {
 
         BasicDBObject whereQuery = new BasicDBObject();
 
@@ -89,12 +88,12 @@ public class SGConfigurationDAOMongoDB implements SGConfigurationDAO {
         //create ObjectMapper instance
         ObjectMapper objectMapper = new ObjectMapper();
         //convert json string to object
-        SGConfiguration sg_config = null;
+        SGResourceConfiguration sg_config = null;
         while (result.hasNext())
             try {
 
 
-                sg_config = objectMapper.readValue(result.next().toString(), SGConfiguration.class);
+                sg_config = objectMapper.readValue(result.next().toString(), SGResourceConfiguration.class);
                 //readValue(jsonData, SG_Configuration.class);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -108,12 +107,12 @@ public class SGConfigurationDAOMongoDB implements SGConfigurationDAO {
     /**
      *
      */
-    public ArrayList<SGConfiguration> loadAll() {
-        ArrayList<SGConfiguration> configurations = new ArrayList<>();
+    public ArrayList<SGResourceConfiguration> loadAll() {
+        ArrayList<SGResourceConfiguration> configurations = new ArrayList<>();
         DBCursor dbcursor;
         dbcursor = collection.find();
         while (dbcursor.hasNext()) {
-            configurations.add((SGConfiguration) dbcursor.next());
+            configurations.add((SGResourceConfiguration) dbcursor.next());
         }
 
         return configurations;
@@ -128,10 +127,10 @@ public class SGConfigurationDAOMongoDB implements SGConfigurationDAO {
 
         DBCursor dbcursor;
         dbcursor = collection.find();
-        SGConfiguration sgConfiguration;
+        SGResourceConfiguration sgResourceConfiguration;
         while (dbcursor.hasNext()) {
-            sgConfiguration = (SGConfiguration) dbcursor.next();
-            allConfigurationNames.add(sgConfiguration.getName());
+            sgResourceConfiguration = (SGResourceConfiguration) dbcursor.next();
+            allConfigurationNames.add(sgResourceConfiguration.getName());
         }
         return allConfigurationNames;
     }

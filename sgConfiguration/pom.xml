@@ -9,12 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>samples</artifactId>
-    <name>samples</name>
-    <packaging>pom</packaging>
+    <artifactId>sgConfiguration</artifactId>
     <version>${project.version}</version>
+    <name>sgConfiguration</name>
+    <packaging>pom</packaging>
 
     <modules>
-        <module>basic</module>
+        <module>sgConfigurationDAO</module>
+        <module>sgConfigurationRestAPI</module>
     </modules>
 </project>

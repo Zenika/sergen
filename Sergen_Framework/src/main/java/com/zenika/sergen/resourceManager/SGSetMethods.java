@@ -1,6 +1,8 @@
 package com.zenika.sergen.resourceManager;
 
 
+import com.zenika.sergen.configuration.SGConfiguration;
+import com.zenika.sergen.configuration.SGConfigurationRestAPI;
 import com.zenika.sergen.pojo.SGMethod;
 import com.zenika.sergen.pojo.SGWorkflows;
 import javassist.*;
@@ -26,6 +28,7 @@ public class SGSetMethods {
      */
     public static void createMethod(SGMethod method, ConstPool constPool, CtClass declaringClass, String objectName) throws NotFoundException {
 
+        SGConfigurationRestAPI restAPI = SGConfiguration.INSTANCE.getConfigurationRestAPI();
 
         ArrayList<SGWorkflows> methodWorkflows = method.getWorkflows();
 
@@ -58,7 +61,6 @@ public class SGSetMethods {
                 //if this the last parameter
                 workflowToString.append(workFlowParameters.get(workFlowParameters.size() - 1));
             }
-
             workflowToString.append(");");
 
             methodBody = methodBody + workflowToString.toString();
@@ -68,8 +70,7 @@ public class SGSetMethods {
         // For constructing
 
 
-        SGRestAPIJersey sgRestAPIJersey = new SGRestAPIJersey();
-        String[] paramInfo = sgRestAPIJersey.getParametersDeclaration(method.getPathParameters());
+        String[] paramInfo = SGConfiguration.INSTANCE.getConfigurationRestAPI().getParametersDeclaration(method.getPathParameters());
         String paramsInPath = paramInfo[0];
         String parameters = paramInfo[1];
 
@@ -89,11 +90,11 @@ public class SGSetMethods {
         }
 
         AnnotationsAttribute attrMethod = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
-        Annotation annotPath = new Annotation(sgRestAPIJersey.getPathDeclaration(), constPool);
+        Annotation annotPath = new Annotation(restAPI.getPathDeclaration(), constPool);
         annotPath.addMemberValue("value", new StringMemberValue(method.getPath() + paramsInPath, constPool));
         attrMethod.addAnnotation(annotPath);
 
-        Annotation annotGet = new Annotation(sgRestAPIJersey.getHTTPMethodDeclaration("GET"), constPool);
+        Annotation annotGet = new Annotation(restAPI.getHTTPMethodDeclaration("GET"), constPool);
 
         attrMethod.addAnnotation(annotGet);
 
@@ -106,12 +107,12 @@ public class SGSetMethods {
         mediaTypeConsumes[0] = new StringMemberValue(method.getConsumes(), constPool);
 
 
-        Annotation annotProduces = new Annotation(sgRestAPIJersey.getProduceDeclaration(), constPool);
+        Annotation annotProduces = new Annotation(restAPI.getProduceDeclaration(), constPool);
         ArrayMemberValue arrayMemberValueProduces = new ArrayMemberValue(constPool);
         arrayMemberValueProduces.setValue(mediaTypeProduces);
         annotProduces.addMemberValue("value", arrayMemberValueProduces);
 
-        Annotation annotConsumes = new Annotation(sgRestAPIJersey.getConsumeDeclaration(), constPool);
+        Annotation annotConsumes = new Annotation(restAPI.getConsumeDeclaration(), constPool);
         ArrayMemberValue arrayMemberValueConsumes = new ArrayMemberValue(constPool);
         arrayMemberValueConsumes.setValue(mediaTypeProduces);
         annotConsumes.addMemberValue("value", arrayMemberValueConsumes);

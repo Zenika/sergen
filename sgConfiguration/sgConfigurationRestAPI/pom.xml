@@ -3,18 +3,18 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>com.zenika.sergen</artifactId>
-        <groupId>zenika</groupId>
-        <version>1.0</version>
+        <groupId>com.zenika.sergen</groupId>
+        <artifactId>sgConfiguration</artifactId>
+        <version>${project.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>configurationDAO</artifactId>
+    <artifactId>sgConfigurationRestAPI</artifactId>
+    <version>${project.version}</version>
+    <name>sgConfigurationRestAPI</name>
     <packaging>pom</packaging>
-    <!--<version>${project.version}</version>-->
+
     <modules>
-
-        <module>mongodb</module>
-
+        <module>sgConfigurationRestAPIJersey</module>
     </modules>
 </project>

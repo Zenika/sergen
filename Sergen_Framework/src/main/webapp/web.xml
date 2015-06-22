@@ -23,7 +23,7 @@
     <!-- Bootstrap the Jersey Servlet Container and point it to our Main
     Application Class that holds the Jersey Provider and Resource configuration -->
     <servlet>
-        <servlet-name>sergenApplication</servlet-name>
+        <servlet-name>basicApplication</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
@@ -34,7 +34,7 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>sergenApplication</servlet-name>
+        <servlet-name>basicApplication</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 

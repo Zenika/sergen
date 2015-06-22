@@ -3,15 +3,16 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
+        <groupId>com.zenika.sergen</groupId>
         <artifactId>samples</artifactId>
-        <groupId>zenika</groupId>
-        <version>1.0</version>
+        <version>${project.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>basic</artifactId>
+    <name>basic</name>
     <packaging>jar</packaging>
-    <!-- <version>${project.version}</version> -->
+    <version>${project.version}</version>
 
     <dependencies>
         <!-- TEST -->
@@ -23,16 +24,22 @@
 
         <!--ConfigurationDAO-->
         <dependency>
-            <groupId>zenika</groupId>
-            <artifactId>configurationDAO</artifactId>
-            <version>1.0</version>
+            <groupId>com.zenika.sergen</groupId>
+            <artifactId>sgConfigurationDAOMongoDB</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zenika.sergen</groupId>
+            <artifactId>sgConfigurationRestAPIJersey</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <!--sergen_framework-->
         <dependency>
-            <groupId>zenika</groupId>
+            <groupId>com.zenika.sergen</groupId>
             <artifactId>sergen_framework</artifactId>
-            <version>1.0</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

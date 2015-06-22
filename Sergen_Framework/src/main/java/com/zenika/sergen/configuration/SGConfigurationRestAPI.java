@@ -1,4 +1,4 @@
-package com.zenika.sergen.resourceManager;
+package com.zenika.sergen.configuration;
 
 import com.zenika.sergen.pojo.SGMethodPathParams;
 
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by Zenika on 29/05/2015.
  */
-public interface SGRestAPI {
+public interface SGConfigurationRestAPI {
 
     public void registerAll(ArrayList<Class<?>> resources);
 

@@ -2,17 +2,34 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>com.zenika.sergen</artifactId>
-        <groupId>zenika</groupId>
-        <version>1.0</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sergen_framework</artifactId>
+    <name>sergen-framework</name>
     <packaging>jar</packaging>
+    <version>${project.version}</version>
+
+    <parent>
+        <groupId>com.zenika.sergen</groupId>
+        <artifactId>sergen</artifactId>
+        <version>${project.version}</version>
+    </parent>
+
 
     <dependencies>
+
+
+
+        <!-- TEST -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--ConfigurationDAO-->
+
+
         <!-- LOGGER -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -38,7 +55,7 @@
 
 
         <!-- JERSEY -->
-        <dependency>
+        <!--dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
             <version>${jersey.version}</version>
@@ -48,7 +65,7 @@
             <artifactId>javax.servlet-api</artifactId>
 
             <scope>provided</scope>
-        </dependency>
+        </dependency -->
 
 
         <!-- Test -->

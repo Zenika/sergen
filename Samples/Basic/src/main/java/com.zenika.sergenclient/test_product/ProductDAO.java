@@ -1,4 +1,4 @@
-package test_product;
+package com.zenika.sergenclient.test_product;
 
 import org.springframework.stereotype.Component;
 

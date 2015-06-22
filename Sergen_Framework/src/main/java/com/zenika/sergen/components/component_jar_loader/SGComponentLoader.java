@@ -16,9 +16,7 @@ public class SGComponentLoader {
         URL[] urls = new URL[]{url};
         ClassLoader cl = new URLClassLoader(urls);
 
-        Class cls = cl.loadClass(className);
-
-        return cls;
+        return cl.loadClass(className);
     }
 }
 
