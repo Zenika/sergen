@@ -14,6 +14,13 @@
     <packaging>pom</packaging>
     <version>${project.version}</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.zenika.sergen</groupId>
+            <artifactId>sergen_framework</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
     <modules>
         <module>basic</module>
     </modules>

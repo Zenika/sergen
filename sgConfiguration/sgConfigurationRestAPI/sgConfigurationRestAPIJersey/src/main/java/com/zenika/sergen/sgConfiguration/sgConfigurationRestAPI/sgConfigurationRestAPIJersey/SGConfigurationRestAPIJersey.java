@@ -1,7 +1,7 @@
 package com.zenika.sergen.sgConfiguration.sgConfigurationRestAPI.sgConfigurationRestAPIJersey;
 
 import com.zenika.sergen.configuration.SGConfigurationRestAPI;
-import com.zenika.sergen.pojo.SGMethodPathParams;
+import com.zenika.sergen.resourceManager.pojo.SGResourceMethodPathParams;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.NotFoundException;
@@ -122,24 +122,24 @@ public class SGConfigurationRestAPIJersey implements SGConfigurationRestAPI {
      * the key is the method Path
      * the value is method parameter, it contructs a string you can call where calling method
      */
-    public String[] getParametersDeclaration(ArrayList<SGMethodPathParams> params) {
+    public String[] getParametersDeclaration(ArrayList<SGResourceMethodPathParams> params) {
         String[] returnedTab = new String[2];
         StringBuilder path = new StringBuilder();
         StringBuilder parameters = new StringBuilder();
         int i = 0;
-        for (SGMethodPathParams sgMethodPathParams : params) {
+        for (SGResourceMethodPathParams sgResourceMethodPathParams : params) {
             path.append("{");
-            path.append(sgMethodPathParams.getName());
+            path.append(sgResourceMethodPathParams.getName());
             path.append("}");
 
             parameters.append("@PathParam(");
             parameters.append("\"");
-            parameters.append(sgMethodPathParams.getName());
+            parameters.append(sgResourceMethodPathParams.getName());
             parameters.append("\"");
             parameters.append("   ");
-            parameters.append(sgMethodPathParams.getType());
+            parameters.append(sgResourceMethodPathParams.getType());
             parameters.append(" ");
-            parameters.append(sgMethodPathParams.getType());
+            parameters.append(sgResourceMethodPathParams.getType());
             if (!(i == params.size())) {
                 path.append("/");
                 parameters.append(", ");

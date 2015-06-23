@@ -2,7 +2,7 @@ package com.zenika.sergen.configuration;
 
 
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
-import com.zenika.sergen.pojo.SGResourceConfiguration;
+import com.zenika.sergen.resourceManager.pojo.SGResourceConfiguration;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.zenika.sergen.pojo;
+package com.zenika.sergen.resourceManager.pojo;
 
 import lombok.Data;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by Zenika on 06/05/2015.
  */
 @Data
-public class SGMethod {
+public class SGResourceMethod {
 
     private String returnType;
     private String name;
@@ -16,7 +16,7 @@ public class SGMethod {
     private String produces;
     private String consumes;
     private String typeOfRequete;
-    private ArrayList<SGMethodPathParams> pathParameters;
+    private ArrayList<SGResourceMethodPathParams> pathParameters;
     private ArrayList<SGWorkflows> workflows;
 
 

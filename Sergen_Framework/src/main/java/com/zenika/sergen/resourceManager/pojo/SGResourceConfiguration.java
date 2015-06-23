@@ -1,4 +1,4 @@
-package com.zenika.sergen.pojo;
+package com.zenika.sergen.resourceManager.pojo;
 
 
 import lombok.Data;
@@ -14,5 +14,5 @@ public class SGResourceConfiguration {
     private Object _id;
     private String name;
     private String path;
-    private ArrayList<SGMethod> methods;
+    private ArrayList<SGResourceMethod> methods;
 }

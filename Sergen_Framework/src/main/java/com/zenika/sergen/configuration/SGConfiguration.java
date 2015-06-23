@@ -1,9 +1,10 @@
 package com.zenika.sergen.configuration;
 
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
-import com.zenika.sergen.pojo.SGResourceConfiguration;
+import com.zenika.sergen.resourceManager.pojo.SGResourceConfiguration;
 import com.zenika.sergen.resourceManager.SGResourceGenerator;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -16,20 +17,14 @@ public enum SGConfiguration {
     private SGConfigurationDAO configurationDAO;
     private SGConfigurationRestAPI configurationRestAPI;
 
-    public ArrayList<Class<?>> generateAllResources() throws SGConfigurationNotFound {
-        if (null == this.configurationDAO)
-            throw new SGConfigurationNotFound("SGConfigurationDAO not set.");
+    private URL componentsPath;
 
-        //récupère les configuration de la BDD
-        ArrayList<SGResourceConfiguration> configurations = this.configurationDAO.loadAll();
+    public URL getComponentsPath() {
+        return componentsPath;
+    }
 
-        //génère les classes à partir des configurations en BDD
-        ArrayList<Class<?>> generatedClasses = SGResourceGenerator.generateAllResources(configurations);
-
-        //enregistre les classes générées
-        this.configurationRestAPI.registerAll(generatedClasses);
-
-        return generatedClasses;
+    public void setComponentsPath(URL componentsPath) {
+        this.componentsPath = componentsPath;
     }
 
     public SGConfigurationDAO setConfigurationDAO(Class className) throws IllegalAccessException, InstantiationException {

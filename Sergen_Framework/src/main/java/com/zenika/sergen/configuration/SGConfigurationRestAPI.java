@@ -1,6 +1,6 @@
 package com.zenika.sergen.configuration;
 
-import com.zenika.sergen.pojo.SGMethodPathParams;
+import com.zenika.sergen.resourceManager.pojo.SGResourceMethodPathParams;
 
 import java.util.ArrayList;
 
@@ -25,5 +25,5 @@ public interface SGConfigurationRestAPI {
 
     public String getPathDeclaration();
 
-    public String[] getParametersDeclaration(ArrayList<SGMethodPathParams> params);
+    public String[] getParametersDeclaration(ArrayList<SGResourceMethodPathParams> params);
 }

@@ -1,4 +1,4 @@
-package com.zenika.sergen.pojo;
+package com.zenika.sergen.resourceManager.pojo;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by Zenika on 26/05/2015.
  */
 @Data
-public class SGMethodPathParams {
+public class SGResourceMethodPathParams {
     private String name;
     private String type;
 

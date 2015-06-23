@@ -1,8 +1,8 @@
 package com.zenika.sergen.resourceManager;
 
-import com.zenika.sergen.pojo.SGResourceConfiguration;
-import com.zenika.sergen.pojo.SGMethod;
-import com.zenika.sergen.pojo.SGWorkflows;
+import com.zenika.sergen.resourceManager.pojo.SGResourceConfiguration;
+import com.zenika.sergen.resourceManager.pojo.SGResourceMethod;
+import com.zenika.sergen.resourceManager.pojo.SGWorkflows;
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
@@ -35,14 +35,14 @@ public class SGResourceGenerator {
 
 
         // to get all methodes for the resource
-        ArrayList<SGMethod> methods = resource.getMethods();
+        ArrayList<SGResourceMethod> methods = resource.getMethods();
 
         ArrayList<SGWorkflows> allMethodWorkFlows;
 
         String[] fieldPath;
         String objectWorkFlowName = null;
 
-        for (SGMethod m : methods) {
+        for (SGResourceMethod m : methods) {
 
             //to get all workflows for a method
             allMethodWorkFlows = m.getWorkflows();

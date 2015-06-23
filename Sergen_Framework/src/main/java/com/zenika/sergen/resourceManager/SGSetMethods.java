@@ -3,8 +3,8 @@ package com.zenika.sergen.resourceManager;
 
 import com.zenika.sergen.configuration.SGConfiguration;
 import com.zenika.sergen.configuration.SGConfigurationRestAPI;
-import com.zenika.sergen.pojo.SGMethod;
-import com.zenika.sergen.pojo.SGWorkflows;
+import com.zenika.sergen.resourceManager.pojo.SGResourceMethod;
+import com.zenika.sergen.resourceManager.pojo.SGWorkflows;
 import javassist.*;
 import javassist.bytecode.AnnotationsAttribute;
 import javassist.bytecode.ConstPool;
@@ -26,7 +26,7 @@ public class SGSetMethods {
      * @param objectName     getting from some annotation from the called com.zenika.sergen.components.component
      * @throws javassist.NotFoundException
      */
-    public static void createMethod(SGMethod method, ConstPool constPool, CtClass declaringClass, String objectName) throws NotFoundException {
+    public static void createMethod(SGResourceMethod method, ConstPool constPool, CtClass declaringClass, String objectName) throws NotFoundException {
 
         SGConfigurationRestAPI restAPI = SGConfiguration.INSTANCE.getConfigurationRestAPI();
 

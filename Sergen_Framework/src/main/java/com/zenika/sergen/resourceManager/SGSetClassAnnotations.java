@@ -1,6 +1,6 @@
 package com.zenika.sergen.resourceManager;
 
-import com.zenika.sergen.pojo.SGResourceConfiguration;
+import com.zenika.sergen.resourceManager.pojo.SGResourceConfiguration;
 import javassist.NotFoundException;
 import javassist.bytecode.AnnotationsAttribute;
 import javassist.bytecode.ClassFile;

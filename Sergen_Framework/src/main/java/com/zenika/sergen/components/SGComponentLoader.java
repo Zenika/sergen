@@ -1,4 +1,4 @@
-package com.zenika.sergen.components.component_jar_loader;
+package com.zenika.sergen.components;
 
 import java.io.File;
 import java.net.MalformedURLException;

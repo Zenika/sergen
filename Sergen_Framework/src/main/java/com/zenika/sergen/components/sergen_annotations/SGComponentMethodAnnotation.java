@@ -8,8 +8,9 @@ import java.lang.annotation.Target;
 /**
  * Created by Zenika on 04/06/2015.
  */
-@Target(ElementType.TYPE)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SGComponent {
-    String value();
+public @interface SGComponentMethodAnnotation {
+
+    String businessName();
 }

@@ -1,6 +1,8 @@
 package com.zenika.sergenclient;
 
 
+import com.zenika.sergen.components.SGComponentManager;
+import com.zenika.sergen.components.pojo.SGComponent;
 import com.zenika.sergen.configuration.SGConfiguration;
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
 import com.zenika.sergen.sgConfiguration.sgConfigurationDAO.sgConfigurationDAOMongoDB.SGConfigurationDAOMongoDB;
@@ -16,6 +18,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * Created by Gwennael on 22/02/2015.
@@ -50,9 +53,15 @@ public class BasicApplication extends ResourceConfig {
         SGConfigurationRestAPIJersey restAPI = (SGConfigurationRestAPIJersey) SGConfiguration.INSTANCE.setConfigurationRestAPI(SGConfigurationRestAPIJersey.class);
         restAPI.init(this);
 
+        //init path to the components
+        SGConfiguration.INSTANCE.setComponentsPath(new URL("c:/components"));
+
+        //load all components from hard drive
+        SGComponentManager.INSTANCE.loadAllComponents();
+
         try {
             /*ArrayList<Class<?>> allGeneratedClass =*/
-            SGConfiguration.INSTANCE.generateAllResources();
+            SGResourceManager.INSTANCE.generateAllResources();
         } catch (SGConfigurationNotFound sgConfigurationNotFound) {
             sgConfigurationNotFound.printStackTrace();
         }

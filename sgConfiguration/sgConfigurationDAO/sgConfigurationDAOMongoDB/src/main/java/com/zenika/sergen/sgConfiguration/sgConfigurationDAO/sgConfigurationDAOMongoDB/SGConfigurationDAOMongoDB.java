@@ -7,7 +7,7 @@ import com.mongodb.*;
 import com.mongodb.util.JSON;
 import com.zenika.sergen.configuration.SGConfigurationDAO;
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
-import com.zenika.sergen.pojo.SGResourceConfiguration;
+import com.zenika.sergen.resourceManager.pojo.SGResourceConfiguration;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
