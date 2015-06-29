@@ -2,9 +2,9 @@ package com.zenika.sergenclient;
 
 
 import com.zenika.sergen.components.SGComponentManager;
-import com.zenika.sergen.components.pojo.SGComponent;
 import com.zenika.sergen.configuration.SGConfiguration;
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
+import com.zenika.sergen.resourceManager.SGResourceManager;
 import com.zenika.sergen.sgConfiguration.sgConfigurationDAO.sgConfigurationDAOMongoDB.SGConfigurationDAOMongoDB;
 import com.zenika.sergen.sgConfiguration.sgConfigurationRestAPI.sgConfigurationRestAPIJersey.SGConfigurationRestAPIJersey;
 import com.zenika.sergenclient.security.CORSFilter;
@@ -47,7 +47,7 @@ public class BasicApplication extends ResourceConfig {
 
         //init la config de l'accès aux données
         SGConfigurationDAOMongoDB configDAO = (SGConfigurationDAOMongoDB) SGConfiguration.INSTANCE.setConfigurationDAO(SGConfigurationDAOMongoDB.class);
-        configDAO.init("localhost", 27017, "ConfigurationDB", "src/main/webapp/resources");
+        configDAO.init("localhost", 27017, "ConfigurationDB", "resources");
 
         //init l'API REST
         SGConfigurationRestAPIJersey restAPI = (SGConfigurationRestAPIJersey) SGConfiguration.INSTANCE.setConfigurationRestAPI(SGConfigurationRestAPIJersey.class);

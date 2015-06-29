@@ -10,7 +10,8 @@ import java.util.ArrayList;
  * Created by Zenika on 22/06/2015.
  */
 public enum SGResourceManager {
-      INSTANCE;
+    INSTANCE;
+
     public ArrayList<Class<?>> generateAllResources() throws SGConfigurationNotFound {
         if (null == SGConfiguration.INSTANCE.getConfigurationDAO())
             throw new SGConfigurationNotFound("SGConfigurationDAO not set.");

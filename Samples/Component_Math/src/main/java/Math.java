@@ -4,7 +4,7 @@ import com.zenika.sergen.components.sergen_annotations.SGComponentMethodAnnotati
 
 public class Math {
 
-    @SGComponentMethodAnnotation(businessName="Multiplcation")
+    @SGComponentMethodAnnotation(businessName = "Multiplication")
     public float multiply(float a, float b) {
         return a * b;
     }

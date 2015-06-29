@@ -1,11 +1,6 @@
 package com.zenika.sergen.configuration;
 
-import com.zenika.sergen.exceptions.SGConfigurationNotFound;
-import com.zenika.sergen.resourceManager.pojo.SGResourceConfiguration;
-import com.zenika.sergen.resourceManager.SGResourceGenerator;
-
 import java.net.URL;
-import java.util.ArrayList;
 
 /**
  * Created by Zenika on 19/06/2015.

@@ -92,7 +92,6 @@ public class SGResourceGenerator {
         return allGeneratedResources;
     }
 
-    // To get CtClass
 
     // function to define, this must return the workflow package getting from appropriate annotation.
     public static String getWorkflowPackage() {

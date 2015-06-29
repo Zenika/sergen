@@ -33,12 +33,38 @@ public class SGSetMethods {
         ArrayList<SGWorkflows> methodWorkflows = method.getWorkflows();
 
 
-        ArrayList<String> workFlowParameters;
+        // Making the method body
+        String methodBody = getMethodBody(methodWorkflows, objectName);
 
-        // Making the workflow body
+
+        //To get methods parameters
+        String[] paramInfo = SGConfiguration.INSTANCE.getConfigurationRestAPI().getParametersDeclaration(method.getPathParameters());
+
+
+        makeMethod(restAPI, method, objectName, paramInfo, methodBody, declaringClass, constPool);
+
+
+    }
+
+    //function for testing if the workflows has returnType or Not
+
+
+    public static boolean workflowsHasReturnType() {
+        return true;
+    }
+
+
+    //For making method body
+
+    /**
+     * @param sgWorkflowses
+     * @param objectName
+     * @return
+     */
+    public static String getMethodBody(ArrayList<SGWorkflows> sgWorkflowses, String objectName) {
         String methodBody = null;
-        for (SGWorkflows workflow : methodWorkflows) {
-            workFlowParameters = workflow.getParameters();
+        for (SGWorkflows workflow : sgWorkflowses) {
+            ArrayList<String> workFlowParameters = workflow.getParameters();
 
 
             StringBuilder workflowToString = new StringBuilder();
@@ -64,21 +90,28 @@ public class SGSetMethods {
             workflowToString.append(");");
 
             methodBody = methodBody + workflowToString.toString();
+
         }
+        return methodBody;
+    }
 
 
-        // For constructing
+    //for making Method
 
-
-        String[] paramInfo = SGConfiguration.INSTANCE.getConfigurationRestAPI().getParametersDeclaration(method.getPathParameters());
-        String paramsInPath = paramInfo[0];
-        String parameters = paramInfo[1];
-
-
+    /**
+     * @param restAPI
+     * @param method
+     * @param objectName
+     * @param paramInfo
+     * @param methodBody
+     * @param declaringClass
+     * @param constPool
+     */
+    public static void makeMethod(SGConfigurationRestAPI restAPI, SGResourceMethod method, String objectName, String[] paramInfo, String methodBody, CtClass declaringClass, ConstPool constPool) {
         CtMethod newMethod = null;
 
         try {
-            newMethod = CtNewMethod.make("public  " + method.getReturnType() + "   " + objectName + "(" + parameters + ") {" + methodBody + "}", declaringClass);
+            newMethod = CtNewMethod.make("public  " + method.getReturnType() + "   " + objectName + "(" + paramInfo[1] + ") {" + methodBody + "}", declaringClass);
         } catch (CannotCompileException e) {
             e.printStackTrace();
         }
@@ -89,9 +122,22 @@ public class SGSetMethods {
             e.printStackTrace();
         }
 
+        newMethod.getMethodInfo().addAttribute(SetAnnotationsMethod(restAPI, constPool, method, paramInfo));
+
+
+    }
+
+    /**
+     * @param restAPI
+     * @param constPool
+     * @param method
+     * @param paramInfo
+     * @return
+     */
+    public static AnnotationsAttribute SetAnnotationsMethod(SGConfigurationRestAPI restAPI, ConstPool constPool, SGResourceMethod method, String[] paramInfo) {
         AnnotationsAttribute attrMethod = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
         Annotation annotPath = new Annotation(restAPI.getPathDeclaration(), constPool);
-        annotPath.addMemberValue("value", new StringMemberValue(method.getPath() + paramsInPath, constPool));
+        annotPath.addMemberValue("value", new StringMemberValue(method.getPath() + paramInfo[0], constPool));
         attrMethod.addAnnotation(annotPath);
 
         Annotation annotGet = new Annotation(restAPI.getHTTPMethodDeclaration("GET"), constPool);
@@ -119,13 +165,10 @@ public class SGSetMethods {
 
         attrMethod.addAnnotation(annotProduces);
         attrMethod.addAnnotation(annotConsumes);
-
-        newMethod.getMethodInfo().addAttribute(attrMethod);
-
-    }
-
-    //function for testing if the workflows has returnType or Not
-    public static boolean workflowsHasReturnType() {
-        return true;
+        return attrMethod;
     }
 }
+
+
+
+
