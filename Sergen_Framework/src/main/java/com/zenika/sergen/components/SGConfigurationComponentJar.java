@@ -3,34 +3,43 @@ package com.zenika.sergen.components;
 import com.zenika.sergen.components.pojo.SGComponent;
 import com.zenika.sergen.exceptions.SGComponentAlreadyLoading;
 
-import java.net.MalformedURLException;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by Zenika on 22/06/2015.
  */
-public enum SGComponentManager {
-    INSTANCE;
+
+public class SGConfigurationComponentJar {
+
 
     /**
      * Key : name of the JAR
      * Value : Description of the component
      */
 
-    //All components in the hardware
-    private Map<String, SGComponent> sgAllComponentsHashMap;
 
-    //All loaded components
+    //All loaded components (in memory)
     private Map<String, SGComponent> sgAllLoadedComponentsHashMap;
-
+    private Map<String, SGComponent> sgAllComponentsHashMap;
     private URLClassLoader urlClassLoader;
 
-    public void initURLClassloader(String urlName) throws MalformedURLException {
-        this.urlClassLoader = new URLClassLoader(new URL[]{new URL(urlName)});
+    private List<String> allComponentNames = null;
+
+    public void init(String componentsPath) throws IOException {
+        this.urlClassLoader = new URLClassLoader(new URL[]{new URL(componentsPath)});
+        SGJarManager sgJarManager = new SGJarManager();
+        // for initializing allComponentNames and sgAllComponentsHashMap
+        for (File f : (new File(componentsPath)).listFiles()) {
+            for (SGComponent sgComponent : sgJarManager.getAllSGComponentsFromAjar(f.getName())) {
+                sgAllComponentsHashMap.put(sgComponent.getName(), sgComponent);
+                allComponentNames.add(sgComponent.getName());
+            }
+        }
 
     }
 
@@ -40,8 +49,8 @@ public enum SGComponentManager {
     public void loadAllComponents() throws ClassNotFoundException {
         //for each JAR file, first check whether it's already in the sgComponentHashMap (hence it's already loaded).
         //If false, so load it via an URLClassLoader and add it's description in the map
-        Set<String> allResourcesName = sgAllComponentsHashMap.keySet();
-        for (String resoureName : allResourcesName) {
+
+        for (String resoureName : allComponentNames) {
             if (!sgAllLoadedComponentsHashMap.containsKey(resoureName)) {
                 urlClassLoader.loadClass(resoureName);
                 sgAllLoadedComponentsHashMap.put(resoureName, sgAllComponentsHashMap.get(resoureName));
@@ -59,23 +68,6 @@ public enum SGComponentManager {
     }
 
     public void unloadComponent(String name) {
-    }
-
-    public Map<String, SGComponent> getSgComponentHashMap() {
-        return sgAllComponentsHashMap;
-    }
-
-    public void setSgComponentHashMap(HashMap<String, SGComponent> sgAllComponentsHashMap) {
-        this.sgAllComponentsHashMap = sgAllComponentsHashMap;
-    }
-
-
-    public Map<String, SGComponent> getSgAllLoadedComponentsHashMap() {
-        return sgAllLoadedComponentsHashMap;
-    }
-
-    public void setSgAllLoadedComponentsHashMap(Map<String, SGComponent> sgAllLoadedComponentsHashMap) {
-        this.sgAllLoadedComponentsHashMap = sgAllLoadedComponentsHashMap;
     }
 
 }

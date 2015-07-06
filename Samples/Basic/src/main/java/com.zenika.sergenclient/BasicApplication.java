@@ -1,7 +1,7 @@
 package com.zenika.sergenclient;
 
 
-import com.zenika.sergen.components.SGComponentManager;
+import com.zenika.sergen.components.SGConfigurationComponentJar;
 import com.zenika.sergen.configuration.SGConfiguration;
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
 import com.zenika.sergen.resourceManager.SGResourceManager;
@@ -18,7 +18,6 @@ import org.glassfish.jersey.server.ResourceConfig;
 import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
 import java.io.IOException;
-import java.net.URL;
 
 /**
  * Created by Gwennael on 22/02/2015.
@@ -54,10 +53,12 @@ public class BasicApplication extends ResourceConfig {
         restAPI.init(this);
 
         //init path to the components
-        SGConfiguration.INSTANCE.setComponentsPath(new URL("c:/components"));
+        SGConfigurationComponentJar jar = (SGConfigurationComponentJar) SGConfiguration.INSTANCE.setConfigurationComponent(SGConfigurationComponentJar.class);
+        jar.init("C:\\Users\\Zenika\\Documents\\sergen\\Sergen_Framework\\src\\main\\java\\com\\zenika\\sergen\\components\\testComponent");
+
 
         //load all components from hard drive
-        SGComponentManager.INSTANCE.loadAllComponents();
+        jar.loadAllComponents();
 
         try {
             /*ArrayList<Class<?>> allGeneratedClass =*/

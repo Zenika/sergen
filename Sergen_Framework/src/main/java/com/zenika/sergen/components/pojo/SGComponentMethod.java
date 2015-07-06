@@ -1,5 +1,7 @@
 package com.zenika.sergen.components.pojo;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 
 /**
@@ -16,9 +18,10 @@ import java.util.ArrayList;
  * technicalName = "multiply"
  * businessName = "Multiplication"
  */
+@Data
 public class SGComponentMethod {
     public ArrayList<SGComponentMethodParams> inputs;
-    public Object output;
+    public Class<?> output;
 
     //technical name for the method
     public String technicalName;
