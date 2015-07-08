@@ -1,5 +1,7 @@
 package com.zenika.sergen.components.sergen_annotations;
 
+import com.zenika.sergen.components.SG_COMPONENT_TYPE;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -11,6 +13,10 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SGPackage {
-    String value();
+public @interface SGComponentClassAnnotation {
+    String name();
+    String description();
+    String version();
+    SG_COMPONENT_TYPE componentType();
+
 }

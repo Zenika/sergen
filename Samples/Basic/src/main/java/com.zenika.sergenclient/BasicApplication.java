@@ -1,6 +1,7 @@
 package com.zenika.sergenclient;
 
 
+import com.zenika.sergen.components.SGComponentManager;
 import com.zenika.sergen.components.SGConfigurationComponentJar;
 import com.zenika.sergen.configuration.SGConfiguration;
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
@@ -55,10 +56,8 @@ public class BasicApplication extends ResourceConfig {
         //init path to the components
         SGConfigurationComponentJar jar = (SGConfigurationComponentJar) SGConfiguration.INSTANCE.setConfigurationComponent(SGConfigurationComponentJar.class);
         jar.init("C:\\Users\\Zenika\\Documents\\sergen\\Sergen_Framework\\src\\main\\java\\com\\zenika\\sergen\\components\\testComponent");
-
-
         //load all components from hard drive
-        jar.loadAllComponents();
+        SGComponentManager.INSTANCE.loadAllComponents();
 
         try {
             /*ArrayList<Class<?>> allGeneratedClass =*/

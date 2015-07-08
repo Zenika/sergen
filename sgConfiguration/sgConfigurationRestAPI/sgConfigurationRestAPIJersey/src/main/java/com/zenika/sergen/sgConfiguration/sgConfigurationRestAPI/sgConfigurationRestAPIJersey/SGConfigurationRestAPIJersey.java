@@ -41,6 +41,9 @@ public class SGConfigurationRestAPIJersey implements SGConfigurationRestAPI {
      */
 
     @Override
+    /**
+     *
+     */
     public void registerAll(ArrayList<Class<?>> resources) {
         for (Class<?> resource : resources) {
             this.resourceConfig.register(resource);
