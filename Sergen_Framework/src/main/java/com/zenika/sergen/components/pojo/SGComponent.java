@@ -11,6 +11,7 @@ import java.util.ArrayList;
 @Data
 public class SGComponent {
     public String name;
+    public String componentPackage;
     public String description;
     public String version;
     public SG_COMPONENT_TYPE type = SG_COMPONENT_TYPE.BUSINESS;

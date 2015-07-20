@@ -1,13 +1,5 @@
 package com.zenika.sergen.configuration;
 
-import com.zenika.sergen.components.SGConfigurationComponentJar;
-
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-import java.util.logging.FileHandler;
-
 /**
  * Created by Zenika on 19/06/2015.
  */
@@ -17,22 +9,15 @@ public enum SGConfiguration {
 
     private SGConfigurationDAO configurationDAO;
     private SGConfigurationRestAPI configurationRestAPI;
+    private String componentsPath;
 
-    private SGConfigurationComponent configurationComponent;
-
-    public SGConfigurationComponent getConfigurationComponent() {
-        return configurationComponent;
+    public String getComponentsPath() {
+        return componentsPath;
     }
 
-
-    public SGConfigurationComponent setConfigurationComponent(Class className) throws IllegalAccessException, InstantiationException {
-        this.configurationComponent = (SGConfigurationComponent) className.newInstance();
-        return this.configurationComponent;
+    public void setComponentsPath(String componentsPath) {
+        this.componentsPath = componentsPath;
     }
-
-
-
-
 
     public SGConfigurationDAO setConfigurationDAO(Class className) throws IllegalAccessException, InstantiationException {
         this.configurationDAO = (SGConfigurationDAO) className.newInstance();
@@ -42,7 +27,6 @@ public enum SGConfiguration {
 
     public SGConfigurationRestAPI setConfigurationRestAPI(Class className) throws IllegalAccessException, InstantiationException {
         this.configurationRestAPI = (SGConfigurationRestAPI) className.newInstance();
-
         return this.configurationRestAPI;
     }
 

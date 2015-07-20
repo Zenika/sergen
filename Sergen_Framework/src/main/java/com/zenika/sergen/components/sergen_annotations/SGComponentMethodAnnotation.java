@@ -1,7 +1,5 @@
 package com.zenika.sergen.components.sergen_annotations;
 
-import com.zenika.sergen.components.SG_COMPONENT_TYPE;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

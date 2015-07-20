@@ -2,8 +2,8 @@ package com.zenika.sergenclient;
 
 
 import com.zenika.sergen.components.SGComponentManager;
-import com.zenika.sergen.components.SGConfigurationComponentJar;
 import com.zenika.sergen.configuration.SGConfiguration;
+import com.zenika.sergen.exceptions.SGComponentAlreadyLoading;
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
 import com.zenika.sergen.resourceManager.SGResourceManager;
 import com.zenika.sergen.sgConfiguration.sgConfigurationDAO.sgConfigurationDAOMongoDB.SGConfigurationDAOMongoDB;
@@ -45,6 +45,7 @@ public class BasicApplication extends ResourceConfig {
     @PostConstruct
     public void generateClasses() throws IllegalAccessException, InstantiationException, IOException, CannotCompileException, NotFoundException, NoSuchMethodException, ClassNotFoundException {
 
+        /**** CONFIG : START ****/
         //init la config de l'accès aux données
         SGConfigurationDAOMongoDB configDAO = (SGConfigurationDAOMongoDB) SGConfiguration.INSTANCE.setConfigurationDAO(SGConfigurationDAOMongoDB.class);
         configDAO.init("localhost", 27017, "ConfigurationDB", "resources");
@@ -54,17 +55,29 @@ public class BasicApplication extends ResourceConfig {
         restAPI.init(this);
 
         //init path to the components
-        SGConfigurationComponentJar jar = (SGConfigurationComponentJar) SGConfiguration.INSTANCE.setConfigurationComponent(SGConfigurationComponentJar.class);
-        jar.init("C:\\Users\\Zenika\\Documents\\sergen\\Sergen_Framework\\src\\main\\java\\com\\zenika\\sergen\\components\\testComponent");
+      SGConfiguration.INSTANCE.setComponentsPath("C:\\Users\\Zenika\\Documents\\sergen\\Sergen_Framework\\src\\main\\java\\com\\zenika\\sergen\\components\\testComponent");
+
+        /**** CONFIG : END ****/
+
+        /**** LOAD : START ****/
         //load all components from hard drive
-        SGComponentManager.INSTANCE.loadAllComponents();
+
 
         try {
+            SGComponentManager.INSTANCE.loadAllComponents();
+        } catch (SGComponentAlreadyLoading sgComponentAlreadyLoading) {
+            sgComponentAlreadyLoading.printStackTrace();
+        }
+
+        //generate REST resources from configurations saved in database
+        try {
             /*ArrayList<Class<?>> allGeneratedClass =*/
-            SGResourceManager.INSTANCE.generateAllResources();
+           SGResourceManager.INSTANCE.generateAllResources();
         } catch (SGConfigurationNotFound sgConfigurationNotFound) {
             sgConfigurationNotFound.printStackTrace();
         }
+
+        /**** LOAD : END ****/
     }
 }
 

@@ -15,8 +15,11 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SGComponentClassAnnotation {
     String name();
+
     String description();
+
     String version();
+
     SG_COMPONENT_TYPE componentType();
 
 }

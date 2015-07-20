@@ -1,5 +1,7 @@
 package com.zenika.sergen.resourceManager;
 
+import com.zenika.sergen.components.SGComponentManager;
+import com.zenika.sergen.components.pojo.SGComponent;
 import com.zenika.sergen.resourceManager.pojo.SGResourceConfiguration;
 import com.zenika.sergen.resourceManager.pojo.SGResourceMethod;
 import com.zenika.sergen.resourceManager.pojo.SGWorkflows;
@@ -42,23 +44,28 @@ public class SGResourceGenerator {
         String[] fieldPath;
         String objectWorkFlowName = null;
 
-        for (SGResourceMethod m : methods) {
+
+        for (SGResourceMethod method : methods) {
 
             //to get all workflows for a method
-            allMethodWorkFlows = m.getWorkflows();
+            allMethodWorkFlows = method.getWorkflows();
 
             for (SGWorkflows w : allMethodWorkFlows) {
 
-                // to create autowired Fields
-                SGSetClassFields.createField(getWorkflowPackage(), pool, constPool, cc);
+                //load the component of the workflow
+                SGComponent sgComponent = SGComponentManager.INSTANCE.getComponent(w.getComponentName());
 
-                fieldPath = getWorkflowPackage().split("\\.");
+                // to create autowired Fields
+                SGSetClassFields.createField(sgComponent.getComponentPackage(), pool, constPool, cc);
+
+
+                fieldPath = sgComponent.getComponentPackage().split("\\.");
 
                 objectWorkFlowName = fieldPath[fieldPath.length - 1].toLowerCase();
             }
             // to Create Methode with annotations
 
-            SGSetMethods.createMethod(m, constPool, cc, objectWorkFlowName);
+            SGSetMethods.createMethod(method, constPool, cc, objectWorkFlowName);
 
         }
 
@@ -92,11 +99,6 @@ public class SGResourceGenerator {
         return allGeneratedResources;
     }
 
-
-    // function to define, this must return the workflow package getting from appropriate annotation.
-    public static String getWorkflowPackage() {
-        return null;
-    }
 
     /**
      * @param name : name of the  the we need the CtClass

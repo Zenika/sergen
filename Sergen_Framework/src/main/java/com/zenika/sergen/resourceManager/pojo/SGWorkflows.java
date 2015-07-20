@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 @Data
 public class SGWorkflows {
+    private String componentName;
     private String method;
     private ArrayList<String> parameters;
 }
