@@ -21,7 +21,6 @@ public enum SGConfiguration {
 
     public SGConfigurationDAO setConfigurationDAO(Class className) throws IllegalAccessException, InstantiationException {
         this.configurationDAO = (SGConfigurationDAO) className.newInstance();
-
         return this.configurationDAO;
     }
 

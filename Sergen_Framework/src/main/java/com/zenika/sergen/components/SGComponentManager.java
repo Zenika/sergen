@@ -7,6 +7,7 @@ import com.zenika.sergen.exceptions.SGComponentAlreadyLoading;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,7 +26,7 @@ public enum SGComponentManager {
 
     //All loaded components (in memory)
     private Map<String, SGComponent> sgLoadedComponentsHashMap = new HashMap<>();
-    private URLClassLoader urlClassLoader;
+    private ClassLoader urlClassLoader;
 
     /**
      * @param componentName
@@ -38,31 +39,41 @@ public enum SGComponentManager {
     /**
      * Load all components (as JARs files) from the components directory, as defined in configuration.
      */
-    public void loadAllComponents() throws ClassNotFoundException, SGComponentAlreadyLoading, IOException {
-        //for each JAR file, first check whether it's already in the sgComponentHashMap (hence it's already loaded).
-        //If false, so load it via an URLClassLoader and add it's description in the map
+    public void loadAllComponents() throws SGComponentAlreadyLoading, IOException, ClassNotFoundException {
+        SGComponentManager.INSTANCE.loadUrlLoader();
 
-        String componentsPath = SGConfiguration.INSTANCE.getComponentsPath();
-        File[] files = new File(componentsPath).listFiles();
+        File dir = new File(SGConfiguration.INSTANCE.getComponentsPath());
+        File[] files = dir.listFiles(new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".jar");
+            }
+        });
+
 
         for (File file : files) {
-            loadFilesRecursive(file);
+            loadComponent(file.getAbsolutePath());
         }
-
 
     }
 
-    public void loadComponent(String filename) throws ClassNotFoundException, SGComponentAlreadyLoading, IOException {
-        loadUrlLoader();
+    /**
+     * @param ComponentName
+     * @throws ClassNotFoundException
+     * @throws SGComponentAlreadyLoading
+     * @throws IOException
+     */
+    public void loadComponent(String ComponentName) throws ClassNotFoundException, SGComponentAlreadyLoading, IOException {
+        SGComponentManager.INSTANCE.loadUrlLoader();
 
-        //check it's a JAR file
-        if (filename.endsWith(".jar")) {
-            if (sgLoadedComponentsHashMap.containsKey(filename))
-                throw new SGComponentAlreadyLoading("This class is already loading");
+        //check if the class is already loaded
 
-            //charge les SGComponents dans la hashmap
-            getAllSGComponentsFromAjar(filename);
-        }
+        if (sgLoadedComponentsHashMap.containsKey(ComponentName))
+            throw new SGComponentAlreadyLoading("This component is already loading");
+
+
+        //charge les SGComponents dans la hashmap
+        getAllSGComponentsFromAjar(ComponentName);
+
     }
 
     public void unloadComponent(String name) {
@@ -88,6 +99,7 @@ public enum SGComponentManager {
             if (jarEntry.getName().endsWith(".class")) {
 
                 sgComponent = new SGComponent();
+
                 classPackage = jarEntry.getName().replaceAll("/", "\\.");
                 className = classPackage.substring(0, classPackage.indexOf("."));
 
@@ -101,52 +113,54 @@ public enum SGComponentManager {
                 try {
 
                     //to set description of a componengt
-                    sgComponent.setDescription(sgExtractInfoFromJar.getComponentDescription(className));
+                    sgComponent.setDescription(sgExtractInfoFromJar.getComponentDescription("com.zenika.sergen.ComponentJarFiles.mathematicsJar.ReturnDix"));
 
                     //to set Version of a component
-                    sgComponent.setVersion(sgExtractInfoFromJar.getComponentVersion(className));
+                    sgComponent.setVersion(sgExtractInfoFromJar.getComponentVersion("com.zenika.sergen.ComponentJarFiles.mathematicsJar.ReturnDix"));
                     //to set ComponentType of a component
-                    sgComponent.setType(sgExtractInfoFromJar.getComponentType(className));
+                    sgComponent.setType(sgExtractInfoFromJar.getComponentType("com.zenika.sergen.ComponentJarFiles.mathematicsJar.ReturnDix"));
                     // to set workflows of a component
-                    sgComponent.setSgComponentMethods((ArrayList<SGComponentMethod>) sgExtractInfoFromJar.getSGComponentMethods(className));
 
-                    sgLoadedComponentsHashMap.put(className, sgComponent);
+
+                    urlClassLoader.loadClass("com.zenika.sergen.ComponentJarFiles.mathematicsJar.ReturnDix");
+                    sgComponent.setSgComponentMethods((ArrayList<SGComponentMethod>) sgExtractInfoFromJar.getSGComponentMethods("com.zenika.sergen.ComponentJarFiles.mathematicsJar.ReturnDix"));
+
+                     sgLoadedComponentsHashMap.put(className, sgComponent);
 
                     //load le jar en mémoire
                     //todo : a valider / completer
-                    urlClassLoader.loadClass(className);
+                    // System.out.println(classPackage.substring(0, classPackage.length() - 6));
+
 
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             }
         }
+
     }
 
-    // load Recursively component in an url
-    private void loadFilesRecursive(File pFile) throws SGComponentAlreadyLoading, IOException, ClassNotFoundException {
-        for (File file : pFile.listFiles()) {
-            if (file.isDirectory()) {
-                loadFilesRecursive(file);
-            } else {
-                loadComponent(file.getName());
-            }
-        }
-    }
 
-    private void loadUrlLoader() {
-        String componentsPath = SGConfiguration.INSTANCE.getComponentsPath();
+    private ClassLoader loadUrlLoader() {
+        String componentsPath = "file://" + SGConfiguration.INSTANCE.getComponentsPath();
+
         try {
             this.urlClassLoader = new URLClassLoader(new URL[]{new URL(componentsPath)});
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        return this.urlClassLoader;
     }
+/*
+    public static void main(String args[]) throws SGComponentAlreadyLoading, IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException {
+        // Path of directories containing all components
+        SGConfiguration.INSTANCE.setComponentsPath("/Users/matekordial/Documents/sergen/Sergen_Framework/src/main/java/com/zenika/sergen/ComponentJarFiles");
 
-   /* public static void main(String args[]) throws SGComponentAlreadyLoading, IOException, ClassNotFoundException {
+        SGComponentManager.INSTANCE.loadAllComponents();
 
-        SGComponentManager.INSTANCE.loadComponent("C:\\Users\\Zenika\\Documents\\sergen\\Sergen_Framework\\src\\main\\java\\com\\zenika\\sergen\\components\\testJar.jar");
+
     }
-    */
+*/
 
 }

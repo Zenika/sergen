@@ -1,32 +1,32 @@
 {
-  "Resource": {
-    "name": "MathResource",
-    "path": "/",
-    "methodes": [
-      {
-        "name": "getResult",
-        "path": "/result",
-        "parameters": [
-          {
-            "name": "id",
-            "type": "String"
-          },
-          {
-            "name": "id",
-            "type": "String"
-          }
-        ],
-        "workflows": [
-          {
-            "methode": "",
-            "parameter": ""
-          },
-          {
-            "methode": "",
-            "parameter": ""
-          }
+    "Resource": {
+        "name": "MathResource",
+        "path": "/",
+        "methodes": [
+            {
+                "name": "getResult",
+                "path": "/result",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "type": "String"
+                    },
+                    {
+                        "name": "id",
+                        "type": "String"
+                    }
+                ],
+                "workflows": [
+                    {
+                        "methode": "",
+                        "parameter": ""
+                    },
+                    {
+                        "methode": "",
+                        "parameter": ""
+                    }
+                ]
+            }
         ]
-      }
-    ]
-  }
+    }
 }

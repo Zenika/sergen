@@ -55,7 +55,7 @@ public class BasicApplication extends ResourceConfig {
         restAPI.init(this);
 
         //init path to the components
-      SGConfiguration.INSTANCE.setComponentsPath("C:\\Users\\Zenika\\Documents\\sergen\\Sergen_Framework\\src\\main\\java\\com\\zenika\\sergen\\components\\testComponent");
+        SGConfiguration.INSTANCE.setComponentsPath("C:\\Users\\Zenika\\Documents\\sergen\\Sergen_Framework\\src\\main\\java\\com\\zenika\\sergen\\components\\testComponent");
 
         /**** CONFIG : END ****/
 
@@ -72,7 +72,7 @@ public class BasicApplication extends ResourceConfig {
         //generate REST resources from configurations saved in database
         try {
             /*ArrayList<Class<?>> allGeneratedClass =*/
-           SGResourceManager.INSTANCE.generateAllResources();
+            SGResourceManager.INSTANCE.generateAllResources();
         } catch (SGConfigurationNotFound sgConfigurationNotFound) {
             sgConfigurationNotFound.printStackTrace();
         }
