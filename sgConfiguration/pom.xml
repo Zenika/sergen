@@ -5,17 +5,18 @@
     <parent>
         <groupId>com.zenika.sergen</groupId>
         <artifactId>sergen</artifactId>
-        <version>${project.version}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sgConfiguration</artifactId>
-    <version>${project.version}</version>
     <name>sgConfiguration</name>
     <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
 
     <modules>
         <module>sgConfigurationDAO</module>
         <module>sgConfigurationRestAPI</module>
     </modules>
+
 </project>

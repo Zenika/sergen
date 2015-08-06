@@ -125,7 +125,7 @@ public enum SGComponentManager {
                     urlClassLoader.loadClass("com.zenika.sergen.ComponentJarFiles.mathematicsJar.ReturnDix");
                     sgComponent.setSgComponentMethods((ArrayList<SGComponentMethod>) sgExtractInfoFromJar.getSGComponentMethods("com.zenika.sergen.ComponentJarFiles.mathematicsJar.ReturnDix"));
 
-                     sgLoadedComponentsHashMap.put(className, sgComponent);
+                    sgLoadedComponentsHashMap.put(className, sgComponent);
 
                     //load le jar en mémoire
                     //todo : a valider / completer
@@ -152,15 +152,6 @@ public enum SGComponentManager {
         }
         return this.urlClassLoader;
     }
-/*
-    public static void main(String args[]) throws SGComponentAlreadyLoading, IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException {
-        // Path of directories containing all components
-        SGConfiguration.INSTANCE.setComponentsPath("/Users/matekordial/Documents/sergen/Sergen_Framework/src/main/java/com/zenika/sergen/ComponentJarFiles");
 
-        SGComponentManager.INSTANCE.loadAllComponents();
-
-
-    }
-*/
 
 }

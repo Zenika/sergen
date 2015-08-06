@@ -7,18 +7,19 @@
     <parent>
         <groupId>com.zenika.sergen</groupId>
         <artifactId>sgConfigurationRestAPI</artifactId>
-        <version>${project.version}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>sgConfigurationRestAPIJersey</artifactId>
-    <version>${project.version}</version>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <dependencies>
 
         <dependency>
             <groupId>com.zenika.sergen</groupId>
             <artifactId>sergen_framework</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <!--Gson-->
         <dependency>
@@ -50,4 +51,7 @@
 
     </dependencies>
 
+    <properties>
+        <project.version>1.0-SNAPSHOT</project.version>
+    </properties>
 </project>

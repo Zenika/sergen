@@ -26,7 +26,7 @@ public class SGSetMethods {
      * @param objectName     getting from some annotation from the called com.zenika.sergen.components.component
      * @throws javassist.NotFoundException
      */
-    public static void createMethod(SGResourceMethod method, ConstPool constPool, CtClass declaringClass, String objectName) throws NotFoundException {
+    public static void createMethod(SGResourceMethod method, ConstPool constPool, CtClass declaringClass, String objectName, String httpMethod) throws NotFoundException {
 
         SGConfigurationRestAPI restAPI = SGConfiguration.INSTANCE.getConfigurationRestAPI();
 
@@ -41,7 +41,7 @@ public class SGSetMethods {
         String[] paramInfo = SGConfiguration.INSTANCE.getConfigurationRestAPI().getParametersDeclaration(method.getPathParameters());
 
 
-        makeMethod(restAPI, method, objectName, paramInfo, methodBody, declaringClass, constPool);
+        makeMethod(restAPI, method, objectName, paramInfo, methodBody, declaringClass, constPool, httpMethod);
 
 
     }
@@ -107,7 +107,7 @@ public class SGSetMethods {
      * @param declaringClass
      * @param constPool
      */
-    public static void makeMethod(SGConfigurationRestAPI restAPI, SGResourceMethod method, String objectName, String[] paramInfo, String methodBody, CtClass declaringClass, ConstPool constPool) {
+    public static void makeMethod(SGConfigurationRestAPI restAPI, SGResourceMethod method, String objectName, String[] paramInfo, String methodBody, CtClass declaringClass, ConstPool constPool, String httpMethod) {
         CtMethod newMethod = null;
 
         try {
@@ -122,7 +122,7 @@ public class SGSetMethods {
             e.printStackTrace();
         }
 
-        newMethod.getMethodInfo().addAttribute(SetAnnotationsMethod(restAPI, constPool, method, paramInfo));
+        newMethod.getMethodInfo().addAttribute(SetAnnotationsMethod(restAPI, constPool, method, paramInfo, httpMethod));
 
 
     }
@@ -134,7 +134,7 @@ public class SGSetMethods {
      * @param paramInfo
      * @return
      */
-    public static AnnotationsAttribute SetAnnotationsMethod(SGConfigurationRestAPI restAPI, ConstPool constPool, SGResourceMethod method, String[] paramInfo) {
+    public static AnnotationsAttribute SetAnnotationsMethod(SGConfigurationRestAPI restAPI, ConstPool constPool, SGResourceMethod method, String[] paramInfo, String httpMethod) {
         AnnotationsAttribute attrMethod = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
         Annotation annotPath = new Annotation(restAPI.getPathDeclaration(), constPool);
         annotPath.addMemberValue("value", new StringMemberValue(method.getPath() + paramInfo[0], constPool));

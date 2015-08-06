@@ -5,16 +5,20 @@
     <parent>
         <groupId>com.zenika.sergen</groupId>
         <artifactId>sgConfiguration</artifactId>
-        <version>${project.version}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sgConfigurationRestAPI</artifactId>
-    <version>${project.version}</version>
+    <version>1.0-SNAPSHOT</version>
     <name>sgConfigurationRestAPI</name>
     <packaging>pom</packaging>
 
     <modules>
         <module>sgConfigurationRestAPIJersey</module>
     </modules>
+
+    <properties>
+        <project.version>1.0-SNAPSHOT</project.version>
+    </properties>
 </project>

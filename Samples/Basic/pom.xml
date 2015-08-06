@@ -5,14 +5,14 @@
     <parent>
         <groupId>com.zenika.sergen</groupId>
         <artifactId>samples</artifactId>
-        <version>${project.version}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>basic</artifactId>
     <name>basic</name>
-    <packaging>jar</packaging>
-    <version>${project.version}</version>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <!-- TEST -->
@@ -26,20 +26,20 @@
         <dependency>
             <groupId>com.zenika.sergen</groupId>
             <artifactId>sgConfigurationDAOMongoDB</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.zenika.sergen</groupId>
             <artifactId>sgConfigurationRestAPIJersey</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!--sergen_framework-->
         <dependency>
             <groupId>com.zenika.sergen</groupId>
             <artifactId>sergen_framework</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -123,4 +123,7 @@
 
     </dependencies>
 
+    <properties>
+        <project.version>1.0-SNAPSHOT</project.version>
+    </properties>
 </project>

@@ -1,0 +1,27 @@
+{
+    "SGResourceConfiguration": {
+        "name": "MathResource",
+        "path": "/",
+        "methods": [
+            {
+                "name": "getResult",
+                "path": "/result",
+                "typeOfRequête": "GET",
+                "pathParameters": [
+                    {
+                        "name": "",
+                        "type": ""
+                    }
+                ],
+                "workflows": [
+
+                    {
+                        "componentName": "ReturnDix",
+                        "method": "getDix",
+                        "parameters": ""
+                    }
+                ]
+            }
+        ]
+    }
+}

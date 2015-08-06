@@ -5,23 +5,28 @@
     <parent>
         <groupId>com.zenika.sergen</groupId>
         <artifactId>sergen</artifactId>
-        <version>${project.version}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>samples</artifactId>
     <name>samples</name>
     <packaging>pom</packaging>
-    <version>${project.version}</version>
+    <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>com.zenika.sergen</groupId>
             <artifactId>sergen_framework</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <modules>
         <module>basic</module>
+
     </modules>
+
+    <properties>
+        <project.version>1.0-SNAPSHOT</project.version>
+    </properties>
 </project>

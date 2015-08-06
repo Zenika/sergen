@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
-    <display-name>MDM</display-name>
+    <display-name>Basic App For Sergen</display-name>
 
     <!-- This is so Spring will automatically load our ApplicationContext.xml file -->
     <listener>
@@ -27,7 +27,7 @@
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.zenika.sergenclient.SergenApplication</param-value>
+            <param-value>com.zenika.sergen.BasicApplication</param-value>
         </init-param>
 
         <load-on-startup>1</load-on-startup>

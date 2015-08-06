@@ -1,8 +1,10 @@
-package com.zenika.sergenclient.security;
+package com.zenika.sergen.security;
+
+import com.sun.jersey.spi.container.ContainerResponseFilter;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
-import javax.ws.rs.container.ContainerResponseFilter;
+
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
@@ -11,7 +13,7 @@ import java.io.IOException;
  * Created by Gwennael on 23/02/2015.
  */
 @Provider
-public class CORSFilter implements ContainerResponseFilter {
+public class CORSFilter implements javax.ws.rs.container.ContainerResponseFilter {
 
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext)
             throws IOException {
@@ -25,7 +27,3 @@ public class CORSFilter implements ContainerResponseFilter {
     }
 
 }
-
-
-
-

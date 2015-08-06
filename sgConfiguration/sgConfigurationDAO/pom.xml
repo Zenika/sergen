@@ -5,17 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>sgConfiguration</artifactId>
         <groupId>com.zenika.sergen</groupId>
-        <version>${project.version}</version>
+        <artifactId>sgConfiguration</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>sgConfigurationDAO</artifactId>
-    <version>${project.version}</version>
     <name>sgConfigurationDAO</name>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
         <module>sgConfigurationDAOMongoDB</module>
     </modules>
+
 </project>

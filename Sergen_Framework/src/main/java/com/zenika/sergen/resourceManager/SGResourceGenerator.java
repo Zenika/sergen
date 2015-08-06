@@ -65,7 +65,7 @@ public class SGResourceGenerator {
             }
             // to Create Methode with annotations
 
-            SGSetMethods.createMethod(method, constPool, cc, objectWorkFlowName);
+            SGSetMethods.createMethod(method, constPool, cc, objectWorkFlowName,"GET");
 
         }
 

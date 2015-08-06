@@ -4,12 +4,12 @@
     <groupId>com.zenika.sergen</groupId>
     <artifactId>sergen</artifactId>
     <packaging>pom</packaging>
-    <version>${project.version}</version>
+    <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>Sergen_Framework</module>
+        <module>sergen_framework</module>
         <module>sgConfiguration</module>
-        <module>Samples</module>
+        <module>samples</module>
     </modules>
     <name>Zenika Sergen POC</name>
 
@@ -192,6 +192,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.version}</version>
                 <configuration>
+
                     <parallel>methods</parallel>
                     <threadCount>10</threadCount>
                 </configuration>
@@ -202,12 +203,23 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${javadoc.version}</version>
                 <configuration>
+
                     <show>private</show>
                     <nohelp>true</nohelp>
                     <reportOutputDirectory>${basedir}/API/</reportOutputDirectory>
                 </configuration>
             </plugin>
+
+            <!--plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <webappDirectory>/Users/matekordial/Documents/sergen/samples/basic/src/main/web/WEB-INF</webappDirectory>
+                </configuration>
+            </plugin-->
         </plugins>
+
     </build>
 
     <reporting>

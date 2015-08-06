@@ -11,6 +11,6 @@ import com.zenika.sergen.components.sergen_annotations.SGComponentMethodAnnotati
 public class ReturnVingt {
     @SGComponentMethodAnnotation(businessName = "ReturningVingtOperation")
     public int getVingt() {
-    return 20;
+        return 20;
     }
 }
