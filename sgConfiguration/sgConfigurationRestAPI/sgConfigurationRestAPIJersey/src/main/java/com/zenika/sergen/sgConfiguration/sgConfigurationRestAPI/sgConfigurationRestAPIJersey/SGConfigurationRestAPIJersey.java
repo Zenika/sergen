@@ -9,6 +9,7 @@ import lombok.Data;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Zenika on 29/05/2015.
@@ -44,7 +45,7 @@ public class SGConfigurationRestAPIJersey implements SGConfigurationRestAPI {
     /**
      *
      */
-    public void registerAll(ArrayList<Class<?>> resources) {
+    public void registerAll(List<Class<?>> resources) {
         for (Class<?> resource : resources) {
             this.resourceConfig.register(resource);
             if (!registeredResources.contains(resource)) {
@@ -125,7 +126,7 @@ public class SGConfigurationRestAPIJersey implements SGConfigurationRestAPI {
      * the key is the method Path
      * the value is method parameter, it contructs a string you can call where calling method
      */
-    public String[] getParametersDeclaration(ArrayList<SGResourceMethodPathParams> params) {
+    public String[] getParametersDeclaration(List<SGResourceMethodPathParams> params) {
         String[] returnedTab = new String[2];
         StringBuilder path = new StringBuilder();
         StringBuilder parameters = new StringBuilder();

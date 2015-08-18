@@ -14,6 +14,7 @@ import javassist.bytecode.annotation.MemberValue;
 import javassist.bytecode.annotation.StringMemberValue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Zenika on 13/05/2015.
@@ -30,7 +31,7 @@ public class SGSetMethods {
 
         SGConfigurationRestAPI restAPI = SGConfiguration.INSTANCE.getConfigurationRestAPI();
 
-        ArrayList<SGWorkflows> methodWorkflows = method.getWorkflows();
+        List<SGWorkflows> methodWorkflows = method.getWorkflows();
 
 
         // Making the method body
@@ -61,10 +62,10 @@ public class SGSetMethods {
      * @param objectName
      * @return
      */
-    public static String getMethodBody(ArrayList<SGWorkflows> sgWorkflowses, String objectName) {
+    public static String getMethodBody(List<SGWorkflows> sgWorkflowses, String objectName) {
         String methodBody = null;
         for (SGWorkflows workflow : sgWorkflowses) {
-            ArrayList<String> workFlowParameters = workflow.getParameters();
+           List<String> workFlowParameters = workflow.getParameters();
 
 
             StringBuilder workflowToString = new StringBuilder();

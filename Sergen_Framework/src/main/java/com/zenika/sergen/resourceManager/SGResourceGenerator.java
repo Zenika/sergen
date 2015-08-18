@@ -14,6 +14,7 @@ import javassist.bytecode.ConstPool;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -37,9 +38,9 @@ public class SGResourceGenerator {
 
 
         // to get all methodes for the resource
-        ArrayList<SGResourceMethod> methods = resource.getMethods();
+        List<SGResourceMethod> methods = resource.getMethods();
 
-        ArrayList<SGWorkflows> allMethodWorkFlows;
+        List<SGWorkflows> allMethodWorkFlows;
 
         String[] fieldPath;
         String objectWorkFlowName = null;
@@ -81,7 +82,7 @@ public class SGResourceGenerator {
      * @param configurations : all com.zenika.sergen.resources 'configuration
      * @return : all generated com.zenika.sergen.resources
      */
-    public static ArrayList<Class<?>> generateAllResources(ArrayList<SGResourceConfiguration> configurations) {
+    public static List<Class<?>> generateAllResources(List<SGResourceConfiguration> configurations) {
         ArrayList<Class<?>> allGeneratedResources = new ArrayList<>();
         Class<?> generatedClass;
         for (SGResourceConfiguration configuration : configurations) {

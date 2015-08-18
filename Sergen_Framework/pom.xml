@@ -19,7 +19,11 @@
 
     <dependencies>
 
-
+        <dependency>
+            <groupId>com.zenika.sergen</groupId>
+            <artifactId>SGConfigurationDAOMongoDB</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
 
         <!-- TEST -->
@@ -79,7 +83,7 @@
             <artifactId>jersey-media-json-jackson</artifactId>
         </dependency>
 
-        <dependency>
+     <!--   <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
         </dependency>
@@ -89,17 +93,19 @@
             <artifactId>jersey-server</artifactId>
 
         </dependency>
-
+-->
 
         <!-- SPRING -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
+            <version> 4.1.5.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+
         </dependency>
 
         <dependency>
@@ -115,7 +121,7 @@
 
 
         <!-- JETTY -->
-        <dependency>
+  <!--      <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
 
@@ -124,7 +130,7 @@
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
         </dependency>
-
+-->
         <!--Javassist -->
 
 
@@ -135,11 +141,12 @@
 
 
         <!--Grizzly-->
-        <dependency>
+      <!--  <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-grizzly2</artifactId>
 
         </dependency>
+        -->
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>

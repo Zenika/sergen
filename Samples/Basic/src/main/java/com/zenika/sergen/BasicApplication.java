@@ -4,10 +4,8 @@ package com.zenika.sergen;
  * Created by matekordial on 30/07/2015.
  */
 
-import com.zenika.sergen.components.SGComponentManager;
+
 import com.zenika.sergen.configuration.SGConfiguration;
-import com.zenika.sergen.exceptions.SGComponentAlreadyLoading;
-import com.zenika.sergen.exceptions.SGConfigurationNotFound;
 import com.zenika.sergen.resourceManager.SGResourceManager;
 import com.zenika.sergen.security.CORSFilter;
 import com.zenika.sergen.sgConfiguration.sgConfigurationDAO.sgConfigurationDAOMongoDB.SGConfigurationDAOMongoDB;
@@ -15,7 +13,7 @@ import com.zenika.sergen.sgConfiguration.sgConfigurationRestAPI.sgConfigurationR
 import javassist.CannotCompileException;
 import javassist.NotFoundException;
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import lombok.EqualsAndHashCode;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -26,17 +24,18 @@ import java.io.IOException;
  * Created by Gwennael on 22/02/2015.
  */
 
-@Slf4j
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class BasicApplication extends ResourceConfig {
 
     public BasicApplication() {
 
-        //log.info("POC started!");
+        //Log.log("POC started!");
 
         // Turn on Jersey classpath scanning for providers and com.zenika.sergen.resources in the given package directories
         packages("com.zenika.sergen");
-        System.out.println("je suis ");
+
+
 
         // Jackson JSON marshalling
         register(JacksonFeature.class);
@@ -48,6 +47,7 @@ public class BasicApplication extends ResourceConfig {
     @PostConstruct
     public void generateClasses() throws IllegalAccessException, InstantiationException, IOException, CannotCompileException, NotFoundException, NoSuchMethodException, ClassNotFoundException {
 
+
         /**** CONFIG : START ****/
         //init la config de l'accès aux données
         SGConfigurationDAOMongoDB configDAO = (SGConfigurationDAOMongoDB) SGConfiguration.INSTANCE.setConfigurationDAO(SGConfigurationDAOMongoDB.class);
@@ -58,7 +58,7 @@ public class BasicApplication extends ResourceConfig {
         restAPI.init(this);
 
         //init path to the components:
-        // SGConfiguration.INSTANCE.setComponentsPath("C:/Users/Zenika/Documents/sergen/Sergen_Framework/src/main/java/com.zenika/sergen/components/testComponent");
+        //    SGConfiguration.INSTANCE.setComponentsPath("/sergen_framework/src/main/java/com/zenika/sergen/ComponentJarFiles/");
 
         /**** CONFIG : END ****/
 
@@ -69,17 +69,23 @@ public class BasicApplication extends ResourceConfig {
         //  try {
         //      SGComponentManager.INSTANCE.loadAllComponents();
         //  } catch (SGComponentAlreadyLoading sgComponentAlreadyLoading) {
-        //      sgComponentAlreadyLoading.printStackTrace();
+        //     sgComponentAlreadyLoading.printStackTrace();
         // }
 
         //generate REST resources from configurations saved in database
-        try {
+
             /*ArrayList<Class<?>> allGeneratedClass =*/
-            SGResourceManager.INSTANCE.generateAllResources();
-        } catch (SGConfigurationNotFound sgConfigurationNotFound) {
-            sgConfigurationNotFound.printStackTrace();
-        }
+
+
+
+
+           // configDAO.delete("MathResource");
+
+        //System.out.println(SGResourceManager.INSTANCE.CRUDGenerator());
+        register(SGResourceManager.INSTANCE.CRUDGenerator());
+
 
         /**** LOAD : END ****/
+
     }
 }

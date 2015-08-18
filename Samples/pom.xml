@@ -20,6 +20,8 @@
             <artifactId>sergen_framework</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- SPRING -->
+
     </dependencies>
     <modules>
         <module>basic</module>

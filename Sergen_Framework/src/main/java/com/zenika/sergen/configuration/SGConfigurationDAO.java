@@ -5,6 +5,7 @@ import com.zenika.sergen.exceptions.SGConfigurationNotFound;
 import com.zenika.sergen.resourceManager.pojo.SGResourceConfiguration;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Zenika on 20/05/2015.
@@ -14,9 +15,9 @@ public interface SGConfigurationDAO {
 
     public void delete(String name);
 
-    public SGResourceConfiguration load(String name) throws SGConfigurationNotFound;
+    public List<SGResourceConfiguration> load(String name) throws SGConfigurationNotFound;
 
-    public ArrayList<SGResourceConfiguration> loadAll();
+    public List<SGResourceConfiguration> loadAll();
 
-    public ArrayList<String> loadAllNames();
+    public List<String> loadAllNames();
 }

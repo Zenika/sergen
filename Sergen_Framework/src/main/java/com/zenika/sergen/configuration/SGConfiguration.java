@@ -1,5 +1,7 @@
 package com.zenika.sergen.configuration;
 
+import org.springframework.stereotype.Service;
+
 /**
  * Created by Zenika on 19/06/2015.
  */
@@ -10,6 +12,8 @@ public enum SGConfiguration {
     private SGConfigurationDAO configurationDAO;
     private SGConfigurationRestAPI configurationRestAPI;
     private String componentsPath;
+
+
 
     public String getComponentsPath() {
         return componentsPath;

@@ -78,7 +78,7 @@
                 <version>${jersey.version}</version>
             </dependency>
 
-            <dependency>
+      <!--      <dependency>
                 <groupId>org.glassfish.jersey.core</groupId>
                 <artifactId>jersey-client</artifactId>
                 <version>${jersey.version}</version>
@@ -89,7 +89,7 @@
                 <artifactId>jersey-server</artifactId>
                 <version>${jersey.version}</version>
             </dependency>
-
+-->
 
             <!-- SPRING -->
             <dependency>
@@ -97,6 +97,7 @@
                 <artifactId>spring-core</artifactId>
                 <version>${spring.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
@@ -115,7 +116,7 @@
 
 
             <!-- JETTY -->
-            <dependency>
+   <!--         <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-server</artifactId>
                 <version>${jetty.version}</version>
@@ -125,7 +126,7 @@
                 <artifactId>jetty-webapp</artifactId>
                 <version>${jetty.version}</version>
             </dependency>
-
+-->
             <!--Javassist -->
 
 
@@ -137,12 +138,12 @@
 
 
             <!--Grizzly-->
-            <dependency>
+       <!--     <dependency>
                 <groupId>com.sun.jersey</groupId>
                 <artifactId>jersey-grizzly2</artifactId>
                 <version>1.12</version>
             </dependency>
-
+-->
             <!--Mongodb -->
             <dependency>
                 <groupId>org.mongodb</groupId>
@@ -184,6 +185,11 @@
                     <httpConnector>
                         <port>8088</port>
                     </httpConnector>
+
+                    <webAppSourceDirectory>
+                        ${project.basedir}/samples/basic/src/main/webapp
+                    </webAppSourceDirectory>
+
                 </configuration>
             </plugin>
 
@@ -210,14 +216,7 @@
                 </configuration>
             </plugin>
 
-            <!--plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <webappDirectory>/Users/matekordial/Documents/sergen/samples/basic/src/main/web/WEB-INF</webappDirectory>
-                </configuration>
-            </plugin-->
+
         </plugins>
 
     </build>
@@ -243,7 +242,7 @@
         <servlet.api.version>3.1.0</servlet.api.version>
         <spring.version>4.1.5.RELEASE</spring.version>
 
-        <jetty.version>9.0.2.v20130417</jetty.version>
+        <jetty.version>9.3.2.v20150730</jetty.version>
         <jettyplugin.version>9.2.8-SNAPSHOT</jettyplugin.version>
 
         <logback.version>1.1.3</logback.version>

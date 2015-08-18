@@ -1,10 +1,8 @@
 package com.zenika.sergen.security;
 
-import com.sun.jersey.spi.container.ContainerResponseFilter;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
-
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;

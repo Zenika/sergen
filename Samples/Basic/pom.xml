@@ -61,7 +61,7 @@
 
 
         <!-- JERSEY -->
-        <dependency>
+     <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
         </dependency>
@@ -78,7 +78,7 @@
             <artifactId>jersey-media-json-jackson</artifactId>
         </dependency>
 
-        <dependency>
+     <!--   <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
         </dependency>
@@ -88,19 +88,26 @@
             <artifactId>jersey-server</artifactId>
         </dependency>
 
-
+-->
         <!-- SPRING -->
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
         </dependency>
+
+
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
+
         </dependency>
 
         <dependency>
@@ -110,7 +117,7 @@
 
 
         <!-- JETTY -->
-        <dependency>
+    <!--    <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
         </dependency>
@@ -120,9 +127,29 @@
             <artifactId>jetty-webapp</artifactId>
         </dependency>
 
-
+        -->
     </dependencies>
+    <build>
+ <plugins>
+    <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>${jetty.version}</version>
+        <configuration>
+            <!--scanIntervalSeconds>10</scanIntervalSeconds-->
+            <httpConnector>
+                <port>8088</port>
+            </httpConnector>
 
+      <!--      <webAppSourceDirectory>
+                ${project.basedir}/samples/basic/src/main/webapp
+            </webAppSourceDirectory>
+-->
+        </configuration>
+    </plugin>
+
+ </plugins>
+   </build>
     <properties>
         <project.version>1.0-SNAPSHOT</project.version>
     </properties>

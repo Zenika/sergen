@@ -3,24 +3,33 @@ package com.zenika.sergen.sgConfiguration.sgConfigurationDAO.sgConfigurationDAOM
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.google.gson.Gson;
 import com.mongodb.*;
 import com.mongodb.util.JSON;
 import com.zenika.sergen.configuration.SGConfigurationDAO;
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
 import com.zenika.sergen.resourceManager.pojo.SGResourceConfiguration;
-
+import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Zenika on 13/05/2015.
  */
-
+@Component
+@Data
 public class SGConfigurationDAOMongoDB implements SGConfigurationDAO {
 
+    ObjectMapper objectMapper;
+
+    SGResourceConfiguration sgResourceConfiguration = null;
     private DBCollection collection;
+
+
 
     public void init(String SGServer, int SGServerPort, String BDName, String CollectionName) {
         try {
@@ -57,7 +66,7 @@ public class SGConfigurationDAOMongoDB implements SGConfigurationDAO {
         }
         //Transform Json to DBObject
         DBObject resourceConfig = (DBObject) JSON.parse(json);
-        collection.insert(resourceConfig);
+        collection.save(resourceConfig);
     }
 
     @Override
@@ -67,56 +76,62 @@ public class SGConfigurationDAOMongoDB implements SGConfigurationDAO {
     public void delete(String name) {
         BasicDBObject whereQuery = new BasicDBObject();
 
-        whereQuery.put("resourceIdentity", name);
-        collection.findAndRemove(whereQuery);
+        whereQuery.put("name", name);
+
+        collection.remove(whereQuery);
+
     }
 
     @Override
     /**
      *
      */
-    public SGResourceConfiguration load(String name) throws SGConfigurationNotFound {
+    public List<SGResourceConfiguration> load(String name) throws SGConfigurationNotFound {
 
         BasicDBObject whereQuery = new BasicDBObject();
 
 
-        whereQuery.put("resourceName", name);
+        whereQuery.put("name", name);
 
 
         DBCursor result;
 
         result = collection.find(whereQuery);
 
-        //create ObjectMapper instance
-        ObjectMapper objectMapper = new ObjectMapper();
-        //convert json string to object
-        SGResourceConfiguration sg_config = null;
-        while (result.hasNext())
-            try {
+
+        SGResourceConfiguration sgResourceConfiguration = null;
+        List<SGResourceConfiguration> configurations = new ArrayList<>();
+        while (result.hasNext()) {
 
 
-                sg_config = objectMapper.readValue(result.next().toString(), SGResourceConfiguration.class);
-                //readValue(jsonData, SG_Configuration.class);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        return sg_config;
+            sgResourceConfiguration = new Gson().fromJson(result.next().toString(), SGResourceConfiguration.class);
+            configurations.add(sgResourceConfiguration);
+        }
+      return configurations;
+   }
 
 
-    }
 
     @Override
     /**
      *
      */
-    public ArrayList<SGResourceConfiguration> loadAll() {
-        ArrayList<SGResourceConfiguration> configurations = new ArrayList<>();
+    public List<SGResourceConfiguration> loadAll() {
+
+        List<SGResourceConfiguration> configurations = new ArrayList<>();
+
+       // Type collectionType = new TypeToken<List<SGResourceConfiguration>>(){}.getType();
+
         DBCursor dbcursor;
         dbcursor = collection.find();
-        while (dbcursor.hasNext()) {
-            configurations.add((SGResourceConfiguration) dbcursor.next());
-        }
+       // List<SGResourceConfiguration> ConfigurationList = new Gson().fromJson(String.valueOf(dbcursor),collectionType);
 
+        while(dbcursor.hasNext()) {
+
+            SGResourceConfiguration sgResourceConfiguration1 = new Gson().fromJson(dbcursor.next().toString(),SGResourceConfiguration.class);
+        //  System.out.println(dbcursor.next().toString());
+            configurations.add(sgResourceConfiguration1);
+        }
         return configurations;
     }
 
@@ -124,11 +139,12 @@ public class SGConfigurationDAOMongoDB implements SGConfigurationDAO {
     /**
      *
      */
-    public ArrayList<String> loadAllNames() {
+    public List<String> loadAllNames() {
         ArrayList<String> allConfigurationNames = new ArrayList<>();
 
         DBCursor dbcursor;
         dbcursor = collection.find();
+        System.out.println(dbcursor.toString());
         SGResourceConfiguration sgResourceConfiguration;
         while (dbcursor.hasNext()) {
             sgResourceConfiguration = (SGResourceConfiguration) dbcursor.next();
@@ -136,4 +152,6 @@ public class SGConfigurationDAOMongoDB implements SGConfigurationDAO {
         }
         return allConfigurationNames;
     }
+
+
 }
