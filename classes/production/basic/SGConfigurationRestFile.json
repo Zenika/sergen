@@ -1,0 +1,30 @@
+{
+    "SGResourceConfiguration": {
+        "name": "ConfigurationResource",
+        "path": "/config",
+        "methods": [
+            {
+                "name": "getAllConfiguration",
+                "path": "/getAllConfigs",
+                "typeOfRequête": "GET",
+                "pathParameters": [
+                    {
+                        "name": "",
+                        "type": ""
+                    }
+                ],
+                "workflows": [
+
+                    {
+                        "componentName": "",
+                        "method": "SGConfiguration.INSTANCE.getConfigurationDAO().loadAll()",
+                        "parameters": ""
+
+
+                    }
+                ]
+            }
+        ]
+    }
+}
+

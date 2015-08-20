@@ -1,7 +1,7 @@
-# sergen
+# com.zenika.sergen
 Projet de stage - Plateforme multicanale à composantes, création de services en composition via interface web
 
-## POC 1 : resources jersey générées au runtime
+## POC 1 : com.zenika.sergen.resources jersey générées au runtime
 
 ## POC 2 : components Spring générées au runtime
 

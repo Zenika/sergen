@@ -1,0 +1,137 @@
+db.resources.save({
+    "name": "ProductResource",
+    "path": "/",
+    "methods": [
+        {
+            "name": "getResult",
+            "path": "/result",
+            "typeOfRequest": "GET",
+            "pathParameters": [
+                {
+                    "name": "",
+                    "type": ""
+                },
+                {
+                    "name": "",
+                    "type": ""
+                }
+            ],
+            "workflows": [
+
+                {
+                    "componentName": "ReturnDix",
+                    "method": "getDix",
+                    "parameters" : ["test", "test"]
+                },
+                {
+                    "componentName": "ReturnDix",
+                    "method": "getDix",
+
+                "parameters" : ["test", "test"]
+                }
+            ]
+        },
+        {
+            "name": "getResult",
+            "path": "/result",
+            "typeOfRequest": "GET",
+            "pathParameters": [
+                {
+                    "name": "",
+                    "type": ""
+                },
+                {
+                    "name": "",
+                    "type": ""
+                }
+            ],
+            "workflows": [
+
+                {
+                    "componentName": "ReturnDix",
+                    "method": "getDix",
+                    "parameters" :
+
+                    ["test", "test"]
+                },
+                {
+                    "componentName": "ReturnDix",
+                    "method": "getDix",
+                    "parameters" :
+                    ["test", "test"]
+                }
+            ]
+        }
+    ]
+
+})
+  {
+        "name": "MathResource",
+        "path": "/",
+        "methods": [
+            {
+                "name": "getResult",
+                "path": "/result",
+                "typeOfRequest": "GET",
+                "pathParameters": [
+                    {
+                        "name": "",
+                        "type": ""
+                    },
+                    {
+                        "name": "",
+                        "type": ""
+                    }
+                ],
+                "workflows": [
+
+                    {
+                        "componentName": "ReturnDix",
+                        "method": "getDix",
+                        "parameters" : ["test", "test"]
+                    },
+                    {
+                        "componentName": "ReturnDix",
+                        "method": "getDix",
+
+                        "parameters" : ["test", "test"]
+                    }
+                ]
+            },
+            {
+                "name": "getResult",
+                "path": "/result",
+                "typeOfRequest": "GET",
+                "pathParameters": [
+                    {
+                        "name": "",
+                        "type": ""
+                    },
+                    {
+                        "name": "",
+                        "type": ""
+                    }
+                ],
+                "workflows": [
+
+                    {
+                        "componentName": "ReturnDix",
+                        "method": "getDix",
+                        "parameters" :
+
+                            ["test", "test"]
+                    },
+                    {
+                        "componentName": "ReturnDix",
+                        "method": "getDix",
+                        "parameters" :
+                            ["test", "test"]
+                    }
+                ]
+            }
+        ]
+
+    }
+]
+)
+
