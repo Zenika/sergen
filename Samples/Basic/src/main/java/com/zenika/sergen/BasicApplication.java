@@ -7,6 +7,9 @@ package com.zenika.sergen;
 
 import com.zenika.sergen.configuration.SGConfiguration;
 import com.zenika.sergen.resourceManager.SGResourceManager;
+import com.zenika.sergen.resourceManager.pojo.SGResourceConfiguration;
+import com.zenika.sergen.resourceManager.pojo.SGResourceMethod;
+import com.zenika.sergen.resourceManager.pojo.SGWorkflows;
 import com.zenika.sergen.security.CORSFilter;
 import com.zenika.sergen.sgConfiguration.sgConfigurationDAO.sgConfigurationDAOMongoDB.SGConfigurationDAOMongoDB;
 import com.zenika.sergen.sgConfiguration.sgConfigurationRestAPI.sgConfigurationRestAPIJersey.SGConfigurationRestAPIJersey;
@@ -19,6 +22,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Gwennael on 22/02/2015.
@@ -82,7 +87,45 @@ public class BasicApplication extends ResourceConfig {
            // configDAO.delete("MathResource");
 
         //System.out.println(SGResourceManager.INSTANCE.CRUDGenerator());
-        register(SGResourceManager.INSTANCE.CRUDGenerator());
+
+        SGResourceConfiguration sgResourceConfiguration = new SGResourceConfiguration();
+        sgResourceConfiguration.setName("FruitsResource");
+        sgResourceConfiguration.setPath("/");
+        SGResourceMethod method1 = new SGResourceMethod();
+        method1.setName("getResult");
+        method1.setPath("/result");
+        method1.setConsumes("sdsdsd");
+        method1.setProduces("sqsqsq");
+        method1.setReturnType("sqsqsqs");
+
+        SGWorkflows workflows1 = new SGWorkflows();
+        workflows1.setComponentName("component");
+        workflows1.setMethod("method");
+        List<String> parameters = new ArrayList<>();
+        parameters.add("param1");
+        parameters.add("param2");
+        workflows1.setParameters(parameters);
+        SGWorkflows workflows2 = new SGWorkflows();
+
+        workflows2.setComponentName("component");
+        workflows2.setMethod("method");
+
+        workflows2.setParameters(parameters);
+
+        List<SGWorkflows> listWorkFlows = new ArrayList<>();
+        listWorkFlows.add(workflows1);
+        listWorkFlows.add(workflows2);
+        method1.setWorkflows(listWorkFlows);
+        SGResourceMethod method2 ;
+        method2 = method1;
+
+        List<SGResourceMethod> listMethod = new ArrayList<>();
+        listMethod.add(method1);
+        listMethod.add(method2);
+        sgResourceConfiguration.setMethods(listMethod);
+
+        configDAO.save(sgResourceConfiguration);
+        //register(SGResourceManager.INSTANCE.CRUDGenerator());
 
 
         /**** LOAD : END ****/

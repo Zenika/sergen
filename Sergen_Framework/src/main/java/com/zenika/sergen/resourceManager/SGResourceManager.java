@@ -4,15 +4,12 @@ package com.zenika.sergen.resourceManager;
 import com.zenika.sergen.configuration.SGConfiguration;
 import com.zenika.sergen.exceptions.SGConfigurationNotFound;
 import com.zenika.sergen.resourceManager.pojo.SGResourceConfiguration;
-import com.zenika.sergen.sgConfiguration.sgConfigurationDAO.sgConfigurationDAOMongoDB.SGConfigurationDAOMongoDB;
 import javassist.*;
 import javassist.bytecode.*;
-import javassist.bytecode.annotation.Annotation;
-import javassist.bytecode.annotation.ArrayMemberValue;
-import javassist.bytecode.annotation.MemberValue;
-import javassist.bytecode.annotation.StringMemberValue;
+import javassist.bytecode.annotation.*;
 
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -66,7 +63,7 @@ public enum SGResourceManager {
         AnnotationsAttribute attrAutowired = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
         AnnotationsAttribute attrMethodGetByName = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
         AnnotationsAttribute attrMethodDelete = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
-
+        AnnotationsAttribute attrMethodSave = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
         // creation de l'annotation autowired pour l'attribut
         Annotation annotAutowired = new Annotation("org.springframework.beans.factory.annotation.Autowired", constPool);
         attrAutowired.addAnnotation(annotAutowired);
@@ -219,6 +216,56 @@ public enum SGResourceManager {
         /// Fin annotations
 
 
+
+        /////Delete Method
+
+        CtMethod saveConfigurationMethod = CtNewMethod.make("public void save( SGResourceConfiguration sgResourceConfiguration) throws SGConfigurationNotFound {\n" +
+                "        SGConfigurationDAOMongoDB sgConfigurationDAOMongoDB = (SGConfigurationDAOMongoDB)SGConfiguration.INSTANCE.getConfigurationDAO();\n" +
+                "          sgConfigurationDAOMongoDB.save(sgResourceConfiguration);\n" +
+                "\n" +
+                "    }", cc);
+        cc.addMethod(saveConfigurationMethod);
+        Annotation annotPathSave = new Annotation("javax.ws.rs.Path", constPool);
+        annotPathSave.addMemberValue("value", new StringMemberValue("/save", constPool));
+        attrMethodSave.addAnnotation(annotPathSave);
+
+        Annotation annotSave = new Annotation("javax.ws.rs.POST", constPool);
+        attrMethodSave.addAnnotation(annotSave);
+
+
+        attrMethodSave.addAnnotation(annotConsumes);
+
+        saveConfigurationMethod.getMethodInfo().addAttribute(attrMethodSave);
+
+
+        ///    Adding Annotation
+
+
+        /**
+         * get constpool
+         */
+        AttributeInfo paramAtrributeInfoSave = new ParameterAnnotationsAttribute(constPool, ParameterAnnotationsAttribute.visibleTag); // or inVisibleTag
+        // ConstPool parameterConstPool = paramAtrributeInfo.getConstPool();
+        /**
+         * param annotation
+         */
+        Annotation parameterAnnotationSave = new Annotation("javax.ws.rs.PathParam", constPool);
+        ClassMemberValue parameterMemberValueSave = new ClassMemberValue("com.zenika.sergen.resourceManager.pojo.ResourceConfiguration", constPool);
+        parameterAnnotationSave.addMemberValue("value", parameterMemberValueSave);
+        /**
+         * add annotation to dimensional array
+         */
+        ParameterAnnotationsAttribute parameterAtrributeSave = ((ParameterAnnotationsAttribute) paramAtrributeInfoSave);
+        Annotation[][] paramAnnotationSave = new Annotation[1][1];
+        paramAnnotationSave[0][0] = parameterAnnotationSave;
+
+        parameterAtrributeSave.setAnnotations(paramAnnotationSave);
+        saveConfigurationMethod.getMethodInfo().addAttribute(parameterAtrributeSave);
+
+
+        /// Fin annotations
+
+
         //Class annotation
         AnnotationsAttribute attrClasse = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
         // Path Annotation for class
@@ -231,7 +278,11 @@ public enum SGResourceManager {
         Annotation annotSlf4j = new Annotation("lombok.extern.slf4j.Slf4j", constPool);
         attrClasse.addAnnotation(annotSlf4j);
         ccFile.addAttribute(attrClasse);
-
+        try {
+            cc.writeFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return cc.toClass();
 
     }
@@ -242,7 +293,7 @@ public enum SGResourceManager {
 
     }*/
 
-  /*  public static void main(String args[]) {
+    public static void main(String args[]) {
         try {
             System.out.println(SGResourceManager.INSTANCE.CRUDGenerator());
         } catch (NotFoundException e) {
@@ -250,6 +301,6 @@ public enum SGResourceManager {
         } catch (CannotCompileException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
 }
