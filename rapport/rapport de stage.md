@@ -25,7 +25,7 @@ Grâce à ses fonctions supports de direction techniques et qualité, Zenika ass
 
 
 ####Spécialité de l'entreprise : l'innovation
-![image](imagecatalogue.png )
+![image](/Users/matekordial/Desktop/rapportstage2015/imagecatalogue.png )
 Depuis sa création Zenika s’est positionné sur les domaines technologiques qui font l’informatique de demain. Ce choix stratégique permet à la fois :
 
  *  d’offrir des retours d’expérience, des formations, mais aussi de nombreux séminaires sur des domaines technologies de niches tout en conservant un positionnement sur les fondamentaux Java /JEE.
@@ -34,26 +34,39 @@ Depuis sa création Zenika s’est positionné sur les domaines technologiques q
 
 Pour cela, la cellule de Direction Technique; ainsi que l’ensemble de la communauté Zenika, effectue une veille technologique active, et participe à de nombreuses contributions open-source.
 
-![image](imageveille.png )
+![image](/Users/matekordial/Desktop/rapportstage2015/imageveille.png )
 
 ####Les compétences de l'entreprise
-![image](imagecompetence.png )
+![image](/Users/matekordial/Desktop/rapportstage2015/imagecompetence.png )
 
 Les compétences de l'entreprise s'articulent autour de  quatre grandes activités  :  **le conseil** , **la réalisation**, **la formation** et le **support**.
 
 Les prinicipales domaines d'expertise de Zenika sont : 
+<<<<<<< HEAD
 <p><img src=imagejava.png alt="imagejava" align=left  height="50" width="50"> 
 
+=======
+<div><p><img src=/Users/matekordial/Desktop/rapportstage2015/imagejava.png alt="imagejava" align=left  height="100" width="100"> 
+>>>>>>> parent of d079029... change image path
 Le  domaine d’expertise de Zenika va du Java débutant à Java spécialiste en passant par les nombreuses technologies de la boîte à outils java.</p>
 
 
 </br>
+<<<<<<< HEAD
 <p><img src=devops.png alt="Un bateau sur la seine" align=left  height="50" width="50">    
+=======
+<div><p><img src=/Users/matekordial/Desktop/rapportstage2015/devops.png alt="Un bateau sur la seine" align=left  height="100" width="100">    
+>>>>>>> parent of d079029... change image path
 
 OpsDev est la vision DevOps de Zenika : une évolution culturelle du service informatique qui encourage la communication et la collaboration entre les équipes d’opérationnels (les Ops) et de développeurs 
 (les Devs), mais aussi les autres services (QA, DBA, Archi, Fonctionnels, Marketing, Commercial...), dans le but de fournir des applications de meilleure qualité, plus fiable et répondant aux objectifs de la société.
 Cette vision est l’extension logique de l’agilité à toute la chaîne de production des services informatiques.
+<<<<<<< HEAD
 Fort de son expérience agile et de son expertise technique tout autant Dev que Ops, Zenika propose de vous aider à construire votre démarche DevOps.</p> 
+=======
+Fort de son expérience agile et de son expertise technique tout autant Dev que Ops, Zenika propose de vous aider à construire votre démarche DevOps.</p> </div>
+<div><p><img src=/Users/matekordial/Desktop/rapportstage2015/agilite.png alt="Un bateau sur la seine" align=left  height="100" width="100">     Alors que les projets confiés à la DSI sont toujours plus complexes, les approches prédictives historiques semblent toujours incapables d'y répondre.
+>>>>>>> parent of d079029... change image path
 
 <img src=agilite.png alt="Un bateau sur la seine" align=left  height="50" width="50">    
  
@@ -61,10 +74,14 @@ Alors que les projets confiés à la DSI sont toujours plus complexes, les appro
 
 De leur coté, les pratiques Agile permettent une augmentation de la satisfaction et de la qualité, tout en entraînant une réduction des délais et des coûts.  </p>
 </br>
+<<<<<<< HEAD
 
 <p><img src=craftsmanship.png alt="Un bateau sur la seine" align=left  height="50" width="50">     
 
 Le Craftsmanship, c’est quoi ?
+=======
+<div><p><img src=/Users/matekordial/Desktop/rapportstage2015/craftsmanship.png alt="Un bateau sur la seine" align=left  height="100" width="100">     Le Craftsmanship, c’est quoi ?
+>>>>>>> parent of d079029... change image path
 « Le problème avec le "vite et sale", c'est que le "sale" demeure bien longtemps après que le "vite" ait été oublié. » - Steve McConnell
 
 Apprenez à mettre votre code sous contôle, industrialisez votre environnement de travail, découvrez comment écrire du code de qualité. S’initier au craftsmanship n’est pas seulement une affaire d’experts, c’est aussi une affaire de passion.  Zenika en fait  son ADN.</p></br>
@@ -72,9 +89,16 @@ Apprenez à mettre votre code sous contôle, industrialisez votre environnement 
 
 <p><img src=web.png alt="Un bateau sur la seine" align=left  height="50" width="50">    
 
+<<<<<<< HEAD
 La programmation ne se limite pas au backoffice. Zenika vous propose un pôle d’expertise complémentaire tourné front office tant sur des écrans génériques que sur des écrans mobiles.</p></br>
 
 </br>
+=======
+<div><p><img src=/Users/matekordial/Desktop/rapportstage2015/web.png alt="Un bateau sur la seine" align=left  height="100" width="100">    La programmation ne se limite pas au backoffice. Zenika vous propose un pôle d’expertise complémentaire tourné front office tant sur des écrans génériques que sur des écrans mobiles.</br>
+
+</br>
+<div><p><img src=/Users/matekordial/Desktop/rapportstage2015/bigdataNosql.png alt="Un bateau sur la seine" align=left  height="100" width="100">    Allez au-delà de la business intelligence et développez vos outils décisionnels. A l’état de projet ou besoin de support, quel que soit le type de solution (colonnes, documents, clés/valeurs ou graph), nos experts peuvent vous apporter leur contribution.</br> 
+>>>>>>> parent of d079029... change image path
 
 <p><img src=bigdataNosql.png alt="Un bateau sur la seine" align=left  height="50" width="50">    
 
@@ -99,6 +123,7 @@ Zenika vous proposent du conseil, de la réalisation ou de la formation sur les 
 
  Zenika a été créé sur le modèle de l'entreprise dans laquelle les dirigeants    aiméraient être lorsque qu'ils étaient consultants : Une communauté d'experts partageant des valeurs humaines et techniques suivantes : **Transparence** ,  **Partage**  et  **Convivialité**  
 
+<<<<<<< HEAD
 <img src=transparence.png alt="Un bateau sur la seine" align=left  height="100" width="100">    
 
 Les collaborateurs sont tenus informés des toutes les nouveautés et décisions stratégiques que prennent les dirigeants. La transparence est la clé de la confiance que portent les collaborateurs en Zenika </p>
@@ -109,6 +134,14 @@ Conférences Open Source, animations internes, tables rondes... sont autant d'oc
 </br>
 <p><img src=convivialite.png alt="Un bateau sur la seine" align=left  height="100" width="100">    
 Réunions informelles, soirées thématiques, bubbles... chaque occasion est propice aux échanges conviviaux.</p>
+=======
+<div><img src=/Users/matekordial/Desktop/rapportstage2015/transparence.png alt="Un bateau sur la seine" align=left  height="100" width="100">    Les collaborateurs sont tenus informés des toutes les nouveautés et décisions stratégiques que prennent les dirigeants. La transparence est la clé de la confiance que portent les collaborateurs en Zenika </div>
+</br>
+<div><img src=/Users/matekordial/Desktop/rapportstage2015/partage.png alt="Un bateau sur la seine" align=left  height="100" width="100">    Conférences Open Source, animations internes, tables rondes... sont autant d'occasions de partager vos connaissances techniques mais aussi vos idées, vos hobbies. Zenika vous donne la parole prenez-la !
+</div>
+</br>
+<div><img src=/Users/matekordial/Desktop/rapportstage2015/convivialite.png alt="Un bateau sur la seine" align=left  height="100" width="100">    Réunions informelles, soirées thématiques, bubbles... chaque occasion est propice aux échanges conviviaux.</div>
+>>>>>>> parent of d079029... change image path
 </br>
 </br>
 ###Presentation de Zenika Lille
@@ -118,10 +151,10 @@ L'agence Zenika Lille  a été créée début septembre 2014. Actuellement il co
 Il est dirigé par le chef d'agence <a href="https://fr.linkedin.com/in/arnaudbuisine">Arnaud Buisine</a>. 
 Il est secondé par un directeur technique <a href="https://fr.linkedin.com/in/gwennaelbuchet">Gwennäel Buchet</a>
 ####Les partenaires de l'entreprise
-![image](imagepartenaire.png )
+![image](/Users/matekordial/Desktop/rapportstage2015/imagepartenaire.png )
 
 ####Zenika : Fiche de présentation détaillée
-![image](imagefiche.png )
+![image](/Users/matekordial/Desktop/rapportstage2015/imagefiche.png )
 
 ## Presentation du travail
 ### Presentation du sujet
@@ -178,6 +211,7 @@ J'ai pu profité de leur expertises pendant toute la durée de mon stage.
 ### Les aspects technologiques
 Durant ce stage j'ai eu l'occaion de pratiquer une large palette de technologies. Des technologies qui sont fortement appréciées par le monde des développeurs. Nous pouvons en citer : 
 
+<<<<<<< HEAD
 <p><img src=javassist.jpeg alt="Un bateau sur la seine" align=left  height="100" width="200"> 
 
 
@@ -187,6 +221,12 @@ Durant ce stage j'ai eu l'occaion de pratiquer une large palette de technologies
 <p><img src=spring.png alt="Un bateau sur la seine" align=left  height="100" width="200"> 
 
 <a href=https://spring.io//>Spring</a>  est le framework de développement d'applications le plus populaire pour  Java entreprises. Des millions de développeurs dans le monde utilisent Spring Framework pour créer du performant , facilement vérifiable , réutilisable code. 
+=======
+<div><img src=/Users/matekordial/Desktop/rapportstage2015/javassist.jpeg alt="Un bateau sur la seine" align=left  height="100" width="200"> </div><a href=http://jboss-javassist.github.io/javassist/>Javassist</a>   (Java programming assistant ) rend la manipulation de bytecode Java simple. C' est une bibliothèque  pour l'édition de bytecode en Java ; elle permet aux programmes Java de  définir une nouvelle classe à l'exécution et de modifier une classe lorsque la JVM le charge .  l'API  Javassist offre deux niveaux : le niveau  code  source et le  niveau  bytecode . Si l'API est utilisé  au niveau source , nous  peuvons modifier un fichier  code source d'une classe sans connaître les spécifications du bytecode Java . L' API est conçu avec seulement le vocabulaire du langage Java . Vous pouvez même spécifier le bytecode  sous la forme d'un texte source et Javassist le compile à la volée . D'autre part , l' API au niveau  bytecode permet aux utilisateurs d'éditer directement un fichier de classe  .</div></br>
+</br>
+
+<div><img src=/Users/matekordial/Desktop/rapportstage2015/spring.png alt="Un bateau sur la seine" align=left  height="100" width="200"> </div><a href=https://spring.io//>Spring</a>  est le framework de développement d'applications le plus populaire pour  Java entreprises. Des millions de développeurs dans le monde utilisent Spring Framework pour créer du performant , facilement vérifiable , réutilisable code. 
+>>>>>>> parent of d079029... change image path
 </br>
 Spring Framework  est une plate-forme Java open source et il a été initialement écrit par Rod Johnson et a d'abord été publié sous la licence Apache 2.0 en Juin de 2003.
 </br>
@@ -194,6 +234,7 @@ Spring est léger par la taille. La version de base de Spring Framework  est d'e
 </br>
 Les principaux éléments de Spring Framework peuvent être utilisés dans le développement de toute application Java, mais il existe des extensions pour construire des applications web au dessus de la plate-forme Java EE . Les objectifs de Spring Framework est de faciliter  le  développement d'applications J2EE  et promouvoir les bonnes pratiques de programmation en permettant un modèle de programmation basé sur les  POJO .</p>
 </br>
+<<<<<<< HEAD
 <p><img src=jersey.png alt="Un bateau sur la seine" align=left  height="100" width="200"> 
 
  Techniquement, les services REST sont spécifiés par le JCP (Java Community Process) sous le nom JAX-RS. Cette spécification précise ce que peut ou doit faire une implémentation, comme pour toutes ces spécifications. L'implémentation de référence que l'on utilise est <a href=https://jersey.java.net/>Jersey</a>. Jersey est installé en standard dans un serveur JEE (tel que Glassfish ou JBoss), et peut s'installer dans un serveur Tomcat.</p>
@@ -207,6 +248,15 @@ Les principaux éléments de Spring Framework peuvent être utilisés dans le d�
 <p><img src=angularjs.png alt="Un bateau sur la seine" align=left  height="100" width="200"> 
 
 <a href=https://jersey.java.net/>AngularJS</a>
+=======
+<div><img src=/Users/matekordial/Desktop/rapportstage2015/jersey.png alt="Un bateau sur la seine" align=left  height="100" width="200"> <a href=https://jersey.java.net/>Jersey</a> Techniquement, les services REST sont spécifiés par le JCP (Java Community Process) sous le nom JAX-RS. Cette spécification précise ce que peut ou doit faire une implémentation, comme pour toutes ces spécifications. L'implémentation de référence que l'on utilise est Jersey. Jersey est installé en standard dans un serveur JEE (tel que Glassfish ou JBoss), et peut s'installer dans un serveur Tomcat.</div>
+</br>
+</br>
+<div><img src=/Users/matekordial/Desktop/rapportstage2015/mongodb.jpeg alt="Un bateau sur la seine" align=left  height="100" width="200"> <a href=https://jersey.java.net/>MongoDB</a>est un système de base de données dans la mouvance NoSQL. Il est orienté documents. Son nom vient de Humongous qui veut dire énorme ou immense. L'objectif est donc de pouvoir gérer de grandes quantités de données. Comment ? Le moteur de base de données facilite l'extension (on parle de scaling) si bien que l'on pourra supporter l'accroissement de la quantité de données par l'ajout de machines.</div>
+</br>
+</br>
+<div><img src=/Users/matekordial/Desktop/rapportstage2015/angularjs.png alt="Un bateau sur la seine" align=left  height="100" width="200"> <a href=https://jersey.java.net/>AngularJS</a>
+>>>>>>> parent of d079029... change image path
 est un framework javascript qui permet de créer des application web dynamiques. Ce type d'applications (souvent appellées SPA pour 
 Single Page Application) sont de plus en plus présentes avec des périphériques connectés de plus en plus variés.  Malheureusement, créer une application tenant sur une seule page n'est pas chose simple. En effet, cela requiert l'utilisation de beaucoup de javascript et il est très difficile de bien s'organiser et d'obtenir une application maintenable et modulable. Et c'est ici qu'AngularJS intervient.
 
